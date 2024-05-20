@@ -1,0 +1,1 @@
+import{au as s,m as a,l as i,aT as n}from"./chunks/framework.Cphjm3J-.js";const E=JSON.parse('{"title":"安装","description":"","frontmatter":{},"headers":[],"relativePath":"guide/index.md","filePath":"guide/index.md"}'),p={name:"guide/index.md"},t=n("",5),e=[t];function l(h,k,r,d,c,o){return i(),a("div",null,e)}const y=s(p,[["render",l]]);export{E as __pageData,y as default};

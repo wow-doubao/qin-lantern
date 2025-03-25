@@ -1,0 +1,1 @@
+import{_ as a,c as n,o as i,b3 as p}from"./chunks/framework.0-xR3LPM.js";const b=JSON.parse('{"title":"安装","description":"","frontmatter":{},"headers":[],"relativePath":"guide/index.md","filePath":"guide/index.md"}'),e={name:"guide/index.md"};function l(t,s,r,h,k,d){return i(),n("div",null,s[0]||(s[0]=[p("",5)]))}const o=a(e,[["render",l]]);export{b as __pageData,o as default};

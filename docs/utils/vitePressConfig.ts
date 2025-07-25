@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+// import { defineConfig } from 'vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
@@ -14,7 +14,7 @@ const resolve = {
   }
 }
 
-export const vitePressConfig = defineConfig({
+export const vitePressConfig = {
   css: {
     preprocessorOptions: {
       scss: {
@@ -51,4 +51,4 @@ export const vitePressConfig = defineConfig({
   server: {
     host: '0.0.0.0'
   }
-})
+}

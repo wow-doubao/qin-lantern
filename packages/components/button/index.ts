@@ -1,0 +1,4 @@
+import Button from './index.vue'
+import { withInstall } from 'qin-lantern/utils/install'
+
+export const QlButton = withInstall(Button)

@@ -1,6 +1,6 @@
 {
   "name": "qin-lantern",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "wzy",
   "keywords": [
     "element-plus",
@@ -11,8 +11,8 @@
   "description": "Component library encapsulating element-plus",
   "homepage": "https://wow-doubao.github.io/qin-lantern/",
   "repository": {
-    "type": "gitee",
-    "url": "https://gitee.com/justit/qin-lantern"
+    "type": "github",
+    "url": "https://github.com/wow-doubao/qin-lantern"
   },
   "type": "module",
   "files": [

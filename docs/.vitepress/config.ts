@@ -11,7 +11,7 @@ export default defineConfig({
   },
   head: [['link', {
     rel: 'icon',
-    href: '/logo.svg'
+    href: '/qin-lantern/logo.svg'
   }]],
   title: 'Qin Lantern',
   description: '一套基于Element Plus封装的UI库',
@@ -31,12 +31,16 @@ export default defineConfig({
       util: autoSetSidebar('util')
     },
 
-    // socialLinks: [
-    //   { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    // ],
+    outline: {
+      label: '页面导航'
+    },
+
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/wow-doubao/qin-lantern' }
+    ],
 
     footer: {
-      copyright: 'Copyright © 2023-present WangZiYi'
+      copyright: 'Copyright © 2025-present WangZiYi'
     },
 
     search: {

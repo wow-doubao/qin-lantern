@@ -27,7 +27,7 @@
 ```
 [详情](/template/Dialog%20%E5%AF%B9%E8%AF%9D%E6%A1%86.html)
 
-## useRequest() `废弃 Hook`
+## useRequest() <Badge type="danger" text="废弃" />
 
 对请求封装Hook
 ```vue
@@ -40,7 +40,7 @@
 </script>
 ```
 
-## useTable() `废弃 Hook`
+## useTable() <Badge type="danger" text="废弃" />
 
 对表格封装Hook
 ```vue

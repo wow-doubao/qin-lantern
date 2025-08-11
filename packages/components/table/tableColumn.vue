@@ -51,6 +51,10 @@ const props = defineProps<{
   tableLabel: TableLabel,
 }>()
 
+defineSlots<{
+  [key: string]: (props: { row: any, column: any, $index: number }) => any
+}>()
+
 </script>
 
 <style scoped lang='scss'>

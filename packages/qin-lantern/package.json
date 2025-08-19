@@ -1,7 +1,7 @@
 {
   "name": "qin-lantern",
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Component library encapsulating element-plus",
   "author": "wzy",
   "homepage": "https://wow-doubao.github.io/qin-lantern/",
@@ -29,6 +29,9 @@
   },
   "main": "./dist/qin-lantern.umd.cjs",
   "module": "./dist/qin-lantern.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",

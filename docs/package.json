@@ -1,0 +1,28 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "packageManager": "pnpm@10.13.1",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "dependencies": {
+    "element-plus": "^2.10.7"
+  },
+  "devDependencies": {
+    "postcss": "^8.5.6",
+    "qin-lantern": "workspace:*",
+    "unocss": "^66.4.2",
+    "unplugin-auto-import": "^20.0.0",
+    "unplugin-vue-components": "^29.0.0",
+    "vite-plugin-eslint": "^1.8.1",
+    "vitepress": "2.0.0-alpha.11"
+  }
+}

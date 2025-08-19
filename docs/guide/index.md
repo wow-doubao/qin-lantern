@@ -20,7 +20,7 @@ import QinLantern from 'qin-lantern'
 // main.ts
 import { createApp } from 'vue'
 import App from './App.vue'
-import 'qin-lantern/dist/style.css'
+import 'qin-lantern/dist/qin-lantern.css'
 
 const app = createApp(App)
 

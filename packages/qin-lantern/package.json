@@ -2,7 +2,19 @@
   "name": "qin-lantern",
   "type": "module",
   "version": "0.2.0",
-  "private": true,
+  "description": "Component library encapsulating element-plus",
+  "author": "wzy",
+  "homepage": "https://wow-doubao.github.io/qin-lantern/",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/wow-doubao/qin-lantern"
+  },
+  "keywords": [
+    "element-plus",
+    "component library",
+    "ui",
+    "vue"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

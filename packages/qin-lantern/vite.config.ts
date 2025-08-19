@@ -38,11 +38,12 @@ export default defineConfig({
     }),
     dts({
       tsconfigPath: './tsconfig.app.json',
-      // include: [
-      //   './src/index.ts',
-      //   '../locale/index.ts',
-      //   '../utils/index.ts',
-      // ],
+      include: [
+        './src',
+        // './src/index.ts',
+        // './src/locale/index.ts',
+        // '../utils/index.ts',
+      ],
     }),
     // eslint({
     //   // failOnError: false,
@@ -53,7 +54,7 @@ export default defineConfig({
       // Could also be a dictionary or array of multiple entry points
       entry: {
         'qin-lantern': path.resolve(__dirname, './src/index.ts'),
-        // 'locale/index': path.resolve(__dirname, './src/locale/index.ts'),
+        'locale/index': path.resolve(__dirname, './src/locale/index.ts'),
         // 'utils/index': path.resolve(__dirname, '../utils/index.ts'),
       },
       // entry: path.resolve(__dirname, './src/index.ts'),

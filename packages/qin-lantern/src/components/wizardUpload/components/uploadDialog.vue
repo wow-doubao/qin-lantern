@@ -82,7 +82,7 @@ function handlePictureCardPreview(uploadFile: UploadFile) {
 function handleDialogOpen() {
 }
 
-const uploadRef = useTemplateRef<typeof ElUpload>('uploadRef')
+const uploadRef = ref<typeof ElUpload>()
 async function confirm() {
   if (fileList.value.length !== 0) {
     // ElMessage.warning('请选择要上传文件')

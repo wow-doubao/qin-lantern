@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { QlCard } from 'qin-lantern'
-
 const formInline = reactive({
   user: '',
 })

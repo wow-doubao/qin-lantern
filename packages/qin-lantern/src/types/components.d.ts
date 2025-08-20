@@ -14,6 +14,12 @@ declare module 'vue' {
     Dialog: typeof import('./../components/dialog/index.vue')['default']
     Draggable: typeof import('./../components/draggable/index.vue')['default']
     Drawer: typeof import('./../components/drawer/index.vue')['default']
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElButtonGroup: typeof import('element-plus/es')['ElButtonGroup']
+    ElDialog: typeof import('element-plus/es')['ElDialog']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElImageViewer: typeof import('element-plus/es')['ElImageViewer']
+    ElInput: typeof import('element-plus/es')['ElInput']
     FormList: typeof import('./../components/formList/index.vue')['default']
     Image: typeof import('./../components/image/index.vue')['default']
     Pagination: typeof import('./../components/pagination/index.vue')['default']
@@ -23,5 +29,8 @@ declare module 'vue' {
     Table: typeof import('./../components/table/index.vue')['default']
     TableColumn: typeof import('./../components/table/tableColumn.vue')['default']
     Upload: typeof import('./../components/upload/index.vue')['default']
+    UploadDialog: typeof import('./../components/wizardUpload/components/uploadDialog.vue')['default']
+    ViewDialog: typeof import('./../components/wizardUpload/components/viewDialog.vue')['default']
+    WizardUpload: typeof import('./../components/wizardUpload/index.vue')['default']
   }
 }

@@ -20,11 +20,11 @@ export default defineConfig({
     UnoCSS(),
 
     AutoImport({
-      dts: path.resolve(__dirname, './types/auto-imports.d.ts'),
+      dts: path.resolve(__dirname, './src/types/auto-imports.d.ts'),
       resolvers: [ElementPlusResolver()],
       eslintrc: {
         enabled: true, // Default `false`
-        filepath: path.resolve(__dirname, './types/.eslintrc-auto-import.json'), // Default `./.eslintrc-auto-import.json`
+        filepath: path.resolve(__dirname, './src/types/.eslintrc-auto-import.json'), // Default `./.eslintrc-auto-import.json`
         globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
       },
       imports: [
@@ -34,7 +34,7 @@ export default defineConfig({
     }),
     Components({
       resolvers: [ElementPlusResolver()],
-      dts: './types/components.d.ts',
+      dts: './src/types/components.d.ts',
     }),
     dts({
       tsconfigPath: './tsconfig.app.json',
@@ -44,6 +44,7 @@ export default defineConfig({
         // './src/locale/index.ts',
         // '../utils/index.ts',
       ],
+      exclude: ['./src/main.ts'],
     }),
     // eslint({
     //   // failOnError: false,

@@ -1,7 +1,6 @@
 import type { App } from '@vue/runtime-core'
 // 导入组件
 import { QlButton } from './components/button'
-
 import { QlCard } from './components/card'
 import { QlConfigProvider } from './components/configProvider'
 import { QlDialog } from './components/dialog'
@@ -15,8 +14,10 @@ import { QlPlusMinus } from './components/plusMinus'
 import { QlSpace } from './components/space'
 import { QlTable } from './components/table'
 import { QlUpload } from './components/upload'
-import 'virtual:uno.css'
+import { QlWizardUpload } from './components/wizardUpload'
 // $addComponent
+import 'virtual:uno.css'
+
 export * from './components/button'
 export * from './components/card'
 export * from './components/configProvider'
@@ -31,6 +32,7 @@ export * from './components/plusMinus'
 export * from './components/space'
 export * from './components/table'
 export * from './components/upload'
+export * from './components/wizardUpload'
 // $addAllComponent
 
 // 导入钩子函数
@@ -54,6 +56,7 @@ export default {
     app.use(QlFormList)
     app.use(QlTable)
     app.use(QlPaging)
+    app.use(QlWizardUpload)
     // $useComponent
   },
 }

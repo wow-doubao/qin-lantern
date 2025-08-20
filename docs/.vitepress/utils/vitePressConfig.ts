@@ -19,10 +19,10 @@ export const vitePressConfig = {
     eslint(),
     AutoImport({
       resolvers: [ElementPlusResolver()],
-      dts: path.resolve(__dirname, '..', '..', './typings/auto-imports.d.ts'),
+      dts: path.resolve(__dirname, '..', '..', './types/auto-imports.d.ts'),
       eslintrc: {
         enabled: true, // Default `false`
-        filepath: path.resolve(__dirname, '..', '..', './typings/.eslintrc-auto-import.json'), // Default `./.eslintrc-auto-import.json`
+        filepath: path.resolve(__dirname, '..', '..', './types/.eslintrc-auto-import.json'), // Default `./.eslintrc-auto-import.json`
         globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
       },
       imports: [
@@ -32,7 +32,7 @@ export const vitePressConfig = {
     }),
     Components({
       resolvers: [ElementPlusResolver()],
-      dts: path.resolve(__dirname, '..', '..', './typings/components.d.ts'),
+      dts: path.resolve(__dirname, '..', '..', './types/components.d.ts'),
     }),
   ],
   ssr: {

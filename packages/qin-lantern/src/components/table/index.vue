@@ -20,6 +20,10 @@ const props = defineProps<{
   popover?: boolean
 }>()
 
+defineSlots<{
+  [key: string]: (props: any) => any
+}>()
+
 const greaterOrEqual = useGreaterOrEqual()
 
 const label = ref(props.label)

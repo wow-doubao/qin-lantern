@@ -88,7 +88,7 @@ const formData = defineModel({ type: Object, default: () => ({}) })
 
 // 隐藏显示配置项
 const tags = ref<Record<string, any>>({})
-const options = ref(props.options)
+const options = ref<FormListOptions>(props.options)
 function isHide(data: string | string[], flag: boolean) {
   if (!(isArray(data) || isString(data)))
     return
@@ -173,7 +173,7 @@ defineExpose({
             v-bind="mergeCol(item.col)"
           >
             <slot
-              v-if="item.type === 'extendSlot'"
+              v-if="item.type === 'extendSlot' && item.key !== undefined"
               :name="item.key"
             />
             <ElFormItem
@@ -291,7 +291,7 @@ defineExpose({
 
               <!-- 插槽 -->
               <slot
-                v-if="item.type === 'slot'"
+                v-if="item.type === 'slot' && item.key !== undefined"
                 :name="item.key"
               />
             </ElFormItem>

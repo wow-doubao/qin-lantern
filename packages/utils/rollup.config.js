@@ -8,7 +8,6 @@ export default {
   input: 'src/index.ts',
   output: {
     dir: 'dist',
-    banner: '#!/usr/bin/env node',
   },
   plugins: [
     json(),

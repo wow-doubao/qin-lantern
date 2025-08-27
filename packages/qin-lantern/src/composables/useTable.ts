@@ -12,14 +12,14 @@ interface UseTableReturnType {
 }
 
 export const useTable = (listRequestFn: () => Promise<unknown>, options: {
-  immediate?: boolean;
-  page?: number;
-  limit?: number;
+  immediate?: boolean
+  page?: number
+  limit?: number
 } = {}): UseTableReturnType => {
   const {
     immediate = true,
     page = 1,
-    limit = 10
+    limit = 10,
   } = options
 
   // 加载态
@@ -37,12 +37,6 @@ export const useTable = (listRequestFn: () => Promise<unknown>, options: {
   // 每页条数
   const perPage: Ref<number> = ref(limit)
 
-  // 搜索
-  const search = (): void => {
-    currentPage.value = 1
-    loadList()
-  }
-
   // 加载数据
   const loadList = async () => {
     loading.value = true
@@ -51,11 +45,18 @@ export const useTable = (listRequestFn: () => Promise<unknown>, options: {
     })
   }
 
+  // 搜索
+  const search = (): void => {
+    currentPage.value = 1
+    loadList()
+  }
+
   // 监听分页数据改变
   watch([currentPage, perPage], loadList)
 
   onMounted(() => {
-    if (immediate) loadList()
+    if (immediate)
+      loadList()
   })
 
   return {
@@ -65,6 +66,6 @@ export const useTable = (listRequestFn: () => Promise<unknown>, options: {
     currentPage,
     perPage,
     search,
-    loadList
+    loadList,
   }
 }

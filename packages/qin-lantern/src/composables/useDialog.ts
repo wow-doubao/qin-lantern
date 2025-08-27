@@ -10,7 +10,7 @@ type FnWrapper = (...args: any[]) => Promise<unknown> | unknown
 type AOPFunction = (fn: FnWrapper) => FnWrapper
 
 interface DialogReturnType {
-  show: Ref<boolean>;
+  show: Ref<boolean>
   AOP: AOPFunction
 }
 
@@ -28,6 +28,6 @@ export const useDialog = (): DialogReturnType => {
 
   return {
     show,
-    AOP
+    AOP,
   }
 }

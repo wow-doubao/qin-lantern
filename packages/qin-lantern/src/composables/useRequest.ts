@@ -8,14 +8,14 @@ import type { Ref } from 'vue'
 type RequestFunction = (...args: any[]) => Promise<any>
 
 interface RequestReturnType {
-  loading: Ref<boolean>;
+  loading: Ref<boolean>
   send: RequestFunction
 }
 
-export const useRequest = (requestFn:RequestFunction): RequestReturnType => {
+export const useRequest = (requestFn: RequestFunction): RequestReturnType => {
   const loading = ref(false)
 
-  function send (...args: any[]) {
+  function send(...args: any[]) {
     loading.value = true
     return requestFn(...args).finally(() => {
       loading.value = false
@@ -24,6 +24,6 @@ export const useRequest = (requestFn:RequestFunction): RequestReturnType => {
 
   return {
     loading,
-    send
+    send,
   }
 }

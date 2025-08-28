@@ -31,11 +31,11 @@ import Paging from '@/examples/paging.vue'
 | query | 加载时触发 | (page: number, limit: number) => void |
 
 ### Slots
-| 插槽名 |	说明 |
+| 插槽名 | 说明 |
 | --- | --- |
-| default |	自定义默认内容 |
-| loading |	自定义loading |
-| empty |	自定义空数据占位 |
+| default | 自定义默认内容 |
+| loading | 自定义loading |
+| empty | 自定义空数据占位 |
 
 ### Exposes
 | 名称 | 说明 | 类型 |

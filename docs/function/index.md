@@ -8,21 +8,21 @@
 
 ```vue
 <script setup lang="ts">
-  import { useDialog } from 'qin-lantern'
+import { useDialog } from 'qin-lantern'
 
-  // 弹框Hook
-  const { show, AOP } = useDialog()
+// 弹框Hook
+const { show, AOP } = useDialog()
 
-  // 打开弹框
-  const open = AOP((data) => {
-    console.log(data) // 打开弹框时传递的数据
-  })
+// 打开弹框
+const open = AOP((data) => {
+  console.log(data) // 打开弹框时传递的数据
+})
 
-  // 关闭弹框
-  const confirm = AOP(async () => {
-    const data = await timedelay('我是弹框确认返回的数据')
-    console.log(data)
-  })
+// 关闭弹框
+const confirm = AOP(async () => {
+  const data = await timedelay('我是弹框确认返回的数据')
+  console.log(data)
+})
 </script>
 ```
 [详情](/template/Dialog%20%E5%AF%B9%E8%AF%9D%E6%A1%86.html)
@@ -32,11 +32,10 @@
 对请求封装Hook
 ```vue
 <script setup lang="ts">
-  import { useRequest } from 'qin-lantern'
+import { useRequest } from 'qin-lantern'
 
-  // 请求Hook
-  const {loading, send} = useRequest(request)
-
+// 请求Hook
+const { loading, send } = useRequest(request)
 </script>
 ```
 
@@ -45,18 +44,17 @@
 对表格封装Hook
 ```vue
 <script setup lang="ts">
-  import { useTable } from 'qin-lantern'
+import { useTable } from 'qin-lantern'
 
-  // 列表数据
-const {loading, list, total, page, limit, search, loadList} = useTable(async () => {
+// 列表数据
+const { loading, list, total, page, limit, search, loadList } = useTable(async () => {
   list.value = await timedelay() // 模拟调用接口
   total.value = Math.ceil(Math.random() * 100) // 返回总条数
-}, { 
+}, {
   // 默认配置
-  immediate?: true;
-  page?: 1;
-  limit?: 10;
+  immediate: true,
+  page: 1,
+  limit: 10,
 })
-
 </script>
 ```

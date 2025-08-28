@@ -126,7 +126,7 @@ defineExpose({
 <template>
   <ElForm
     ref="form"
-    class="formList"
+    class="ql-formList"
     :model="formData"
   >
     <ElRow :gutter="20">
@@ -304,7 +304,7 @@ defineExpose({
 </template>
 
 <style scoped lang='scss'>
-.formList {
+.ql-formList {
   .info-item-title {
     color: var(--el-color-primary);
     font-size: 18px;

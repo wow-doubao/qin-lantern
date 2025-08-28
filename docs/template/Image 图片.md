@@ -8,7 +8,6 @@ import Image from '@/examples/image.vue'
 <Image />
 :::
 
-
 <<< @/examples/image.vue
 
 ## API

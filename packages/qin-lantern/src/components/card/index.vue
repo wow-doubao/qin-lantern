@@ -48,8 +48,10 @@ defineOptions({
   }
 
   .search {
-    :deep(.el-form-item) {
-      margin: 10px 0;
+    :deep(.ql-formList) {
+      .el-form-item {
+        margin: 10px 0;
+      }
     }
   }
 }

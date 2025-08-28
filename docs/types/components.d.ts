@@ -13,6 +13,8 @@ declare module 'vue' {
     ElFormItem: typeof import('element-plus/es')['ElFormItem']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElTag: typeof import('element-plus/es')['ElTag']
+    QlCard: typeof import('qin-lantern')['QlCard']
+    QlFormList: typeof import('qin-lantern')['QlFormList']
   }
   export interface GlobalDirectives {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']

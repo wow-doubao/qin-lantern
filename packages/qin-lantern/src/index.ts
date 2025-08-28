@@ -40,6 +40,9 @@ export * from './composables/useDialog'
 export * from './composables/useRequest'
 export * from './composables/useTable'
 
+// unplugin-vue-components/vite 自动导入
+export * from './resolver'
+
 export default {
   install: (app: App) => {
     app.use(QlButton)

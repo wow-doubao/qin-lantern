@@ -1,4 +1,5 @@
 import path from 'node:path'
+import { QinLanternResolver } from 'qin-lantern'
 import UnoCSS from 'unocss/vite'
 // import { defineConfig } from 'vite'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -31,7 +32,7 @@ export const vitePressConfig = {
       ],
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver(), QinLanternResolver()],
       dts: path.resolve(__dirname, '..', '..', './types/components.d.ts'),
     }),
   ],

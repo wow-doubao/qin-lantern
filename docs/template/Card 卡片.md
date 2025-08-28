@@ -1,6 +1,6 @@
 # Card 卡片
 默认插槽自带 **space** 间距
-> `search` 插槽中修改了 **el-form-item** 的样式，垂直居中
+> `search` 插槽中修改了 **QlFormList > el-form-item** 的样式，垂直居中
 
 <script setup>
 import Card from '@/examples/card.vue'

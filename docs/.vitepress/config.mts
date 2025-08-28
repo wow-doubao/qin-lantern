@@ -7,7 +7,7 @@ export default defineConfig({
   base: '/qin-lantern/',
   vite: vitePressConfig,
   markdown: {
-    lineNumbers: true,
+    lineNumbers: false,
   },
   head: [['link', {
     rel: 'icon',

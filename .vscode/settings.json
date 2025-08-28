@@ -28,7 +28,7 @@
     "jsonc"
   ],
   "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "vite.devCommand": "pnpm run dev -- --",
   "i18n-ally.enabledParsers": ["ts"],

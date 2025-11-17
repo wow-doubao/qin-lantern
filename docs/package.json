@@ -14,7 +14,7 @@
     "preview": "vitepress preview"
   },
   "dependencies": {
-    "element-plus": "^2.11.1"
+    "element-plus": "^2.11.8"
   },
   "devDependencies": {
     "postcss": "^8.5.6",

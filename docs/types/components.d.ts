@@ -14,6 +14,7 @@ declare module 'vue' {
     ElInput: typeof import('element-plus/es')['ElInput']
     ElTag: typeof import('element-plus/es')['ElTag']
     QlCard: typeof import('qin-lantern')['QlCard']
+    QlDrawer: typeof import('qin-lantern')['QlDrawer']
     QlFormList: typeof import('qin-lantern')['QlFormList']
   }
   export interface GlobalDirectives {

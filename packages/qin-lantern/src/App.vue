@@ -1,60 +1,29 @@
-<!--  -->
-<script setup>
-const listParams = ref({})
+<script setup lang="ts">
+// 抽屉Hook
+const show = ref(false)
+// 打开抽屉
+const open = () => {
+  show.value = true
+}
 
-const formData = ref({})
-const options = reactive([
-  {
-    label: '模版名称',
-    key: 'name',
-    type: 'input',
-  },
-  {
-    label: '模版类型',
-    key: 'type',
-    type: 'input',
-  },
-])
+// 关闭抽屉
+const confirm = () => {
+  show.value = false
+}
 </script>
 
 <template>
-  <div class="">
-    {{ value }}
-    <ql-card>
-      <template #search>
-        <el-form
-          inline
-          :model="listParams"
-        >
-          <el-form-item label="用户昵称：">
-            <el-input
-              v-model="listParams.username"
-              clearable
-              placeholder="请输入用户昵称"
-            />
-          </el-form-item>
-          <el-form-item>
-            <el-button>
-              查询
-            </el-button>
-          </el-form-item>
-        </el-form>
+  <el-button @click="open">
+    抽屉展示
+  </el-button>
 
-        <ql-form-list
-          v-model="formData"
-          :options="options"
-        >
-          <el-form-item>
-            <el-button>
-              查询
-            </el-button>
-          </el-form-item>
-        </ql-form-list>
-      </template>
-    </ql-card>
-  </div>
+  <ql-drawer
+    v-model="show"
+    title="提示"
+    :confirm="confirm"
+  >
+    我是内容
+  </ql-drawer>
 </template>
 
-<style scoped lang='scss'>
-
-</style>
+<style scoped lang='scss'></style>

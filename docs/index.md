@@ -5,7 +5,7 @@ layout: home
 hero:
   name: Qin Lantern
   text: 一套基于Element Plus封装的组件库
-  tagline: "简洁、易用、好用~"
+  tagline: "简单、高效、好用~"
   image:
     src: /background.svg
     alt: Qin Lantern
@@ -26,7 +26,7 @@ features:
     details: 基于 Attributes 继承，可在组件上使用所有element-plus属性。
   - icon: 📦
     title: 简洁高效
-    details: 可脱离element-plus单独使用，与element-plus同时使用时也不会造成打包冗余。
+    details: 基于element-plus二次封装，与element-plus同时使用时也不会造成打包冗余。
 ---
 
 <!-- <script setup>

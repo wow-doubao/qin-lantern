@@ -1,6 +1,5 @@
-import type { MaybeRef } from '@vueuse/core'
 import type { QlLanguage } from 'qin-lantern/locale'
-import type { InjectionKey, Ref } from 'vue'
+import type { InjectionKey, MaybeRef, Ref } from 'vue'
 
 import { get } from 'lodash-unified'
 import { zhCn } from 'qin-lantern/locale'

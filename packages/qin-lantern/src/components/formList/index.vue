@@ -304,6 +304,8 @@ defineExpose({
 </template>
 
 <style scoped lang='scss'>
+@use 'element-plus/theme-chalk/src/mixins/config.scss' as *;
+
 .ql-formList {
   .info-item-title {
     color: var(--el-color-primary);
@@ -325,7 +327,7 @@ defineExpose({
     }
   }
 
-  :deep(.el-form-item__content > div) {
+  :deep(.#{$namespace}-form-item__content > div) {
     width: 100% !important;
   }
 
@@ -334,7 +336,7 @@ defineExpose({
   //   box-sizing: border-box;
   // }
 
-  :deep(.el-col) {
+  :deep(.#{$namespace}-col) {
     transition: all 0.28s;
   }
 
@@ -345,7 +347,7 @@ defineExpose({
     color: var(--el-color-primary);
   }
 
-  .active~.el-col {
+  .active~.#{$namespace}-col {
     overflow: hidden;
     height: 0;
     opacity: 0;

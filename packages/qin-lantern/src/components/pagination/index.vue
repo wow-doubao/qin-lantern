@@ -12,7 +12,7 @@ const props = defineProps({
   },
   scrollEl: {
     type: String,
-    default: '.el-main',
+    default: 'main',
   },
 })
 const emit = defineEmits(['change'])

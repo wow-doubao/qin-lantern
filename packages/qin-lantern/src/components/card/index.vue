@@ -41,6 +41,8 @@ defineOptions({
 </template>
 
 <style scoped lang="scss">
+@use 'element-plus/theme-chalk/src/mixins/config.scss' as *;
+
 .space{
   display: flex;
   :deep(.space__item) {
@@ -49,7 +51,7 @@ defineOptions({
 
   .search {
     :deep(.ql-formList) {
-      .el-form-item {
+      .#{$namespace}-form-item {
         margin: 10px 0;
       }
     }

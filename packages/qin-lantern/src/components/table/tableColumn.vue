@@ -3,6 +3,7 @@
 import type { TableLabel } from './types'
 import { ElTableColumn } from 'element-plus'
 import { useGreaterOrEqual } from 'qin-lantern/hooks'
+import TableSlot from './slot'
 
 defineOptions({
   name: 'QlTableColumn',
@@ -12,9 +13,7 @@ const props = defineProps<{
   // 表头
   tableLabel: TableLabel
 }>()
-defineSlots<{
-  [key: string]: (props: { row: any, column: any, $index: number }) => any
-}>()
+
 const greaterOrEqual = useGreaterOrEqual()
 </script>
 
@@ -30,27 +29,16 @@ const greaterOrEqual = useGreaterOrEqual()
         v-for="item in props.tableLabel.child"
         :key="item.label"
         :table-label="item"
-      >
-        <template
-          v-for="(_, name) in $slots"
-          :key="name"
-          #[name]="slotProp"
-        >
-          <slot
-            :name="name"
-            v-bind="slotProp"
-          />
-        </template>
-      </QlTableColumn>
+      />
     </template>
 
     <template
       v-if="props.tableLabel?.slot"
       #default="slotProps"
     >
-      <slot
+      <TableSlot
         :name="props.tableLabel.prop"
-        v-bind="slotProps"
+        :scope="slotProps"
       />
     </template>
   </ElTableColumn>

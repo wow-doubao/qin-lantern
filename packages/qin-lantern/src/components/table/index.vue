@@ -1,8 +1,9 @@
-<script setup lang="ts">
-import type { TableLabel } from './types'
+<script setup lang="ts" generic="T extends Record<string, any>">
+import type { TableLabel } from './types.ts'
 import { Operation } from '@element-plus/icons-vue'
 import { ElButton, ElPopover, ElTable, ElTableColumn, ElTree, ClickOutside as vClickOutside } from 'element-plus'
 import { useGreaterOrEqual } from 'qin-lantern/hooks'
+import { computed, nextTick, provide, ref, unref, useSlots, watch } from 'vue'
 
 import QlTableColumn from './tableColumn.vue'
 
@@ -13,7 +14,7 @@ defineOptions({
 const props = defineProps<{
   // 表头
   label: TableLabel[]
-  data: any[]
+  data: T[]
   // 是否有select
   select?: boolean
   // 是否展示动态表头
@@ -23,6 +24,9 @@ const props = defineProps<{
 defineSlots<{
   [key: string]: (props: any) => any
 }>()
+
+const slots = useSlots()
+provide('tableSlots', slots)
 
 const greaterOrEqual = useGreaterOrEqual()
 
@@ -150,91 +154,25 @@ defineExpose({
 <template>
   <div class="relative">
     <ElTable
-      v-bind="$attrs"
-      ref="multipleTableRef"
-      style="width: 100%"
-      :data="props.data"
-      @select="handleSelect"
+      v-bind="$attrs" ref="multipleTableRef" style="width: 100%" :data="props.data" @select="handleSelect"
       @select-all="handleSelectAll"
     >
-      <ElTableColumn
-        v-if="props.select"
-        type="selection"
-        align="center"
-        width="55"
-      />
+      <ElTableColumn v-if="props.select" type="selection" align="center" width="55" />
       <!-- 选择器 -->
       <ElTableColumn
-        v-if="props.popover"
-        type="index"
-        width="60"
-        align="center"
+        v-if="props.popover" type="index" width="60" align="center"
         :fixed="greaterOrEqual ? 'left' : false"
       >
         <template #header>
-          <ElButton
-            ref="buttonRef"
-            v-click-outside="onClickOutside"
-            circle
-            :icon="Operation"
-          />
+          <ElButton ref="buttonRef" v-click-outside="onClickOutside" circle :icon="Operation" />
         </template>
       </ElTableColumn>
 
-      <QlTableColumn
-        v-for="item in tableLabel"
-        :key="item.label"
-        :table-label="item"
-      >
-        <!-- <template
-          v-if="item?.slot"
-          #default="slotProps"
-        >
-          <slot
-            :name="item.prop"
-            v-bind="slotProps"
-          />
-        </template> -->
-        <template
-          v-for="(_, name) in $slots"
-          :key="name"
-          #[name]="slotProps"
-        >
-          <slot
-            :name="name"
-            v-bind="slotProps"
-          />
-        </template>
-      </QlTableColumn>
-      <!-- <el-table-column label="qwe">
-        <template
-          v-for="item in tableLabel"
-          :key="item.prop"
-        >
-          <el-table-column
-            v-bind="item"
-            :fixed="greaterOrEqual? item?.fixed: false"
-          >
-            <template
-              v-if="item?.slot"
-              #default="slotProps"
-            >
-              <slot
-                :name="item.prop"
-                v-bind="slotProps"
-              />
-            </template>
-          </el-table-column>
-        </template>
-      </el-table-column> -->
+      <QlTableColumn v-for="item in tableLabel" :key="item.label" :table-label="item" />
     </ElTable>
 
     <ElPopover
-      ref="popoverRef"
-      :virtual-ref="buttonRef"
-      virtual-triggering
-      width="auto"
-      placement="bottom-start"
+      ref="popoverRef" :virtual-ref="buttonRef" virtual-triggering width="auto" placement="bottom-start"
       :teleported="false"
     >
       <!-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -246,20 +184,12 @@ defineExpose({
         />
       </div> -->
       <ElTree
-        ref="treeRef"
-        show-checkbox
-        node-key="label"
-        style="max-width: 320px"
-        :data="label"
-        :props="{
+        ref="treeRef" show-checkbox node-key="label" style="max-width: 320px" :data="label" :props="{
           children: 'child',
-        }"
-        :default-checked-keys="defaultChecked"
-        @check-change="handleCheckChange"
+        }" :default-checked-keys="defaultChecked" @check-change="handleCheckChange"
       />
     </ElPopover>
   </div>
 </template>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

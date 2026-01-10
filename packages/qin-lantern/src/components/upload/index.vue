@@ -3,7 +3,7 @@ import type { UploadFile, UploadFiles, UploadRawFile, UploadUserFile } from 'ele
 import { Plus } from '@element-plus/icons-vue'
 import { ElIcon, ElImage, ElMessage, ElUpload } from 'element-plus'
 import { QlDialog } from 'qin-lantern'
-import { useLocale, useUpload } from 'qin-lantern/hooks'
+import { useLocale, useNamespace, useUpload } from 'qin-lantern/hooks'
 
 defineOptions({
   name: 'QlUpload',
@@ -33,6 +33,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue', 'success'])
 const { t } = useLocale()
 const uploadConfig = useUpload()
+const ns = useNamespace('upload')
 
 const fileList = ref<UploadUserFile[]>([])
 
@@ -139,13 +140,13 @@ defineExpose({
 </script>
 
 <template>
-  <div class="upload">
+  <div :class="ns.b()">
     <template v-if="props.disabled">
       <ElImage
         v-for="item in fileList"
         :key="item.url"
         :src="item.url"
-        class="img"
+        :class="ns.e('img')"
         :preview-src-list="[item.url || '']"
       />
     </template>
@@ -175,17 +176,4 @@ defineExpose({
   </div>
 </template>
 
-<style scoped lang='scss'>
-.upload{
-  .img {
-    width: 146px;
-    height: 146px;
-    border-radius: 6px;
-    margin: 0 8px 8px 0;
-    overflow: hidden;
-    &:not(:last-child) {
-      margin-right: 8px;
-    }
-  }
-}
-</style>
+<style scoped lang='scss'></style>

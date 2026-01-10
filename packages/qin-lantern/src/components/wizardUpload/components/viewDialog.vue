@@ -1,5 +1,8 @@
 <!--  -->
 <script setup lang="ts">
+import { useNamespace } from 'qin-lantern/hooks'
+import { inject } from 'vue'
+
 const { url } = defineProps({
   url: {
     type: String,
@@ -11,18 +14,19 @@ const { url } = defineProps({
 
 // const themeStore = useThemeStore()
 const type = inject('type')
+const ns = useNamespace('wizard-upload')
 </script>
 
 <template>
   <el-dialog destroy-on-close>
     <img
       v-if="type === 'image'"
-      class="w-full"
+      :class="ns.e('view-image')"
       :src="url"
     >
     <video
       v-if="type === 'video'"
-      class="w-full"
+      :class="ns.e('view-video')"
       controls
     >
       <source
@@ -31,7 +35,7 @@ const type = inject('type')
     </video>
     <iframe
       v-if="type === 'file'"
-      class="w-full h-600px"
+      :class="ns.e('view-file')"
       :src="`https://view.officeapps.live.com/op/embed.aspx?src=${url}`"
     />
   </el-dialog>

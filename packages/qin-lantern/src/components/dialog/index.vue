@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ElButton, ElDialog } from 'element-plus'
-import { useGreaterOrEqual, useLocale } from 'qin-lantern/hooks'
+import { useGreaterOrEqual, useLocale, useNamespace } from 'qin-lantern/hooks'
 
 defineOptions({
   name: 'QlDialog',
@@ -28,6 +28,7 @@ const props = defineProps({
 })
 const { t } = useLocale()
 const greaterOrEqual = useGreaterOrEqual()
+const ns = useNamespace('dialog')
 
 // 双向数据绑定
 const visible = defineModel({
@@ -55,6 +56,7 @@ async function handleConfirm() {
   <ElDialog
     ref="dialog"
     v-model="visible"
+    :class="ns.b()"
     :fullscreen="!greaterOrEqual"
     :close-on-click-modal="false"
     :close-on-press-escape="false"

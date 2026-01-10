@@ -1,0 +1,14 @@
+{
+  "filePath": ".spec-workflow/specs/optimize-namespace/tasks.md",
+  "currentVersion": 1,
+  "snapshots": [
+    {
+      "version": 1,
+      "filename": "snapshot-001.json",
+      "timestamp": "2026-01-10T15:36:31.213Z",
+      "trigger": "initial",
+      "approvalId": "approval_1768059391205_iqjsnzvht",
+      "approvalTitle": "任务文档：命名空间优化与样式分离 (Tasks: Optimize Namespace & Style Separation)"
+    }
+  ]
+}

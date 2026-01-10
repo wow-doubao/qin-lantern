@@ -1,0 +1,14 @@
+@use 'mixins/mixins' as *;
+
+@include b(plus-minus) {
+  display: flex;
+
+  @include e(content) {
+    flex: 1;
+    margin-right: 8px;
+  }
+
+  @include e(actions) {
+    width: 76px;
+  }
+}

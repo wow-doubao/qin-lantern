@@ -1,0 +1,11 @@
+@use 'mixins/mixins' as *;
+
+@include b(table) {
+  position: relative;
+  @include e(tools) {
+    position: absolute;
+    right: 1rem;
+    top: -3rem;
+    z-index: 100;
+  }
+}

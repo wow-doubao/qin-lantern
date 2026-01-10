@@ -1,0 +1,16 @@
+{
+  "id": "snapshot_1768057526240_laeilul6s",
+  "approvalId": "approval_1768057526233_331gj0qte",
+  "approvalTitle": "Product Steering Document",
+  "version": 1,
+  "timestamp": "2026-01-10T15:05:26.240Z",
+  "trigger": "initial",
+  "status": "pending",
+  "content": "# Product Steering Document\n\n## Vision\nTo provide a robust, easy-to-use set of Vue 3 components encapsulated on top of Element Plus, enhancing developer productivity and UI consistency for projects using the Qin Lantern design language.\n\n## Goals\n- **Encapsulation**: Simplify complex Element Plus configurations into easy-to-use components.\n- **Consistency**: Maintain a consistent look and feel across all encapsulated components.\n- **Flexibility**: Allow for necessary customization while providing sensible defaults.\n- **Type Safety**: Ensure full TypeScript support for all components.\n\n## Target Audience\n- Vue 3 developers using Element Plus.\n- Developers looking for a \"Qin Lantern\" themed or specific utility component set.\n\n## Key Features\n- Based on Element Plus ^2.11.8.\n- Written in TypeScript.\n- Uses Vite for build tooling.\n- Includes common UI patterns (Table, Dialog, Form, etc.) pre-configured or enhanced.\n",
+  "fileStats": {
+    "size": 925,
+    "lines": 21,
+    "lastModified": "2026-01-10T15:05:17.208Z"
+  },
+  "comments": []
+}

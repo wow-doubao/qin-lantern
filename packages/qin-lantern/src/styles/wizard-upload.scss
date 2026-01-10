@@ -1,0 +1,26 @@
+@use 'mixins/mixins' as *;
+
+@include b(wizard-upload) {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  @include e(content) {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  @include e(view-image) {
+    width: 100%;
+  }
+
+  @include e(view-video) {
+    width: 100%;
+  }
+
+  @include e(view-file) {
+    width: 100%;
+    height: 600px;
+  }
+}

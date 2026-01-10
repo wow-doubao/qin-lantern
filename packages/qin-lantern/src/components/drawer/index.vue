@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ElButton, ElDrawer } from 'element-plus'
-import { useGreaterOrEqual, useLocale } from 'qin-lantern/hooks'
+import { useGreaterOrEqual, useLocale, useNamespace } from 'qin-lantern/hooks'
 
 defineOptions({
   name: 'QlDrawer',
@@ -28,6 +28,7 @@ const props = defineProps({
 })
 const { t } = useLocale()
 const greaterOrEqual = useGreaterOrEqual()
+const ns = useNamespace('drawer')
 
 // 双向数据绑定
 const visible = defineModel({
@@ -55,6 +56,7 @@ async function handleConfirm() {
   <ElDrawer
     ref="drawer"
     v-model="visible"
+    :class="ns.b()"
     :size="greaterOrEqual ? void 0 : '100%'"
     :close-on-click-modal="false"
     :close-on-press-escape="false"

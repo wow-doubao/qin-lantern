@@ -1,3 +1,4 @@
+import { promises as fs } from 'node:fs'
 import path from 'node:path'
 import vue from '@vitejs/plugin-vue'
 // import eslint from 'vite-plugin-eslint'
@@ -7,6 +8,23 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
+
+function copyStyles() {
+  return {
+    name: 'copy-styles',
+    closeBundle: async () => {
+      const srcDir = path.resolve(__dirname, './src/styles')
+      const destDir = path.resolve(__dirname, './dist/styles')
+      try {
+        await fs.cp(srcDir, destDir, { recursive: true })
+        console.log('Styles copied to dist/styles')
+      }
+      catch (e) {
+        console.error('Failed to copy styles:', e)
+      }
+    },
+  }
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -33,7 +51,9 @@ export default defineConfig({
       ],
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [ElementPlusResolver({
+        importStyle: false, // 不引入样式，避免打包到产物中
+      })],
       dts: './src/types/components.d.ts',
     }),
     dts({
@@ -49,6 +69,7 @@ export default defineConfig({
     // eslint({
     //   // failOnError: false,
     // })
+    copyStyles(),
   ],
   build: {
     lib: {
@@ -56,6 +77,7 @@ export default defineConfig({
       entry: {
         'qin-lantern': path.resolve(__dirname, './src/index.ts'),
         'locale/index': path.resolve(__dirname, './src/locale/index.ts'),
+        'resolver/index': path.resolve(__dirname, './src/resolver/index.ts'),
         // 'utils/index': path.resolve(__dirname, '../utils/index.ts'),
       },
       // entry: path.resolve(__dirname, './src/index.ts'),

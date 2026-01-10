@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ElPagination } from 'element-plus'
-import { useGreaterOrEqual } from 'qin-lantern/hooks'
+import { useGreaterOrEqual, useNamespace } from 'qin-lantern/hooks'
 
 defineOptions({
   name: 'QlPagination',
@@ -17,6 +17,7 @@ const props = defineProps({
 })
 const emit = defineEmits(['change'])
 const greaterOrEqual = useGreaterOrEqual()
+const ns = useNamespace('pagination')
 // 事件处理
 function change() {
   emit('change')
@@ -29,12 +30,12 @@ function change() {
 <template>
   <ElPagination
     v-if="greaterOrEqual"
-    class="pagination"
+    :class="ns.b()"
     @change="change"
   />
   <ElPagination
     v-else
-    class="pagination"
+    :class="ns.b()"
     size="small"
     background
     :pager-count="5"
@@ -44,10 +45,4 @@ function change() {
   />
 </template>
 
-<style scoped lang="scss">
-.pagination{
-  overflow: hidden;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-</style>
+<style scoped lang="scss"></style>

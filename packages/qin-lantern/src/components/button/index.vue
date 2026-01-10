@@ -1,19 +1,20 @@
 <!--  -->
 <script setup lang="ts">
 import { ElButton } from 'element-plus'
-import { useGreaterOrEqual } from 'qin-lantern/hooks'
+import { useNamespace } from 'qin-lantern/hooks'
 
 defineOptions({
   name: 'QlButton',
 })
-const greaterOrEqual = useGreaterOrEqual()
-const arr = ref('')
-console.log(arr.value)
+
+const ns = useNamespace('button')
 </script>
 
 <template>
-  <ElButton type="primary">
-    {{ greaterOrEqual }}
+  <ElButton
+    type="primary"
+    :class="ns.b()"
+  >
     <slot />
   </ElButton>
 </template>

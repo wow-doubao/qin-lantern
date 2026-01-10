@@ -1,0 +1,5 @@
+@use 'mixins/config' as *;
+
+:root {
+  --#{$namespace}-color-primary: #409eff;
+}

@@ -1,0 +1,14 @@
+@use 'mixins/mixins' as *;
+
+@include b(upload) {
+  @include e(img) {
+    width: 146px;
+    height: 146px;
+    border-radius: 6px;
+    margin: 0 8px 8px 0;
+    overflow: hidden;
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
+}

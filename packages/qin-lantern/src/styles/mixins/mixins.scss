@@ -1,0 +1,64 @@
+@use 'sass:string';
+@forward 'config';
+@use 'config' as *;
+
+// Define $B globally to avoid deprecation warning
+$B: null;
+
+@mixin b($block) {
+  $B: $namespace + '-' + $block !global;
+
+  .#{$B} {
+    @content;
+  }
+}
+
+@mixin e($element) {
+  $selector: &;
+  $currentSelector: "";
+  
+  @each $unit in $element {
+    $currentSelector: #{$currentSelector + "." + $B + "__" + $unit + ","};
+  }
+  
+  @if $currentSelector != "" {
+    $currentSelector: string.slice($currentSelector, 1, -2);
+  }
+
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}
+
+@mixin m($modifier) {
+  $selector: &;
+  $currentSelector: "";
+  
+  @each $unit in $modifier {
+    $currentSelector: #{$currentSelector + $selector + "--" + $unit + ","};
+  }
+  
+  @if $currentSelector != "" {
+    $currentSelector: string.slice($currentSelector, 1, -2);
+  }
+
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}
+
+@mixin is($state) {
+  &.#{$state-prefix + $state} {
+    @content;
+  }
+}
+
+@mixin when($state) {
+  @include is($state) {
+    @content;
+  }
+}

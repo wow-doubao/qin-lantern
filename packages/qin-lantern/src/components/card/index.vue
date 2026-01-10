@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { ElCard, ElSpace } from 'element-plus'
+import { useNamespace } from 'qin-lantern/hooks'
 
 defineOptions({
   name: 'QlCard',
 })
+
+const ns = useNamespace('card')
 </script>
 
 <template>
@@ -17,13 +20,13 @@ defineOptions({
     <ElSpace
       direction="vertical"
       alignment="flex-start"
-      class="space"
-      prefix-cls="space"
+      :class="ns.e('space')"
+      :prefix-cls="ns.b('space')"
       size="large"
     >
       <div
         v-if="$slots.search"
-        class="search"
+        :class="ns.e('search')"
       >
         <slot name="search" />
       </div>
@@ -40,21 +43,4 @@ defineOptions({
   </ElCard>
 </template>
 
-<style scoped lang="scss">
-@use 'element-plus/theme-chalk/src/mixins/config.scss' as *;
-
-.space{
-  display: flex;
-  :deep(.space__item) {
-    width: 100%;
-  }
-
-  .search {
-    :deep(.ql-formList) {
-      .#{$namespace}-form-item {
-        margin: 10px 0;
-      }
-    }
-  }
-}
-</style>
+<style scoped lang="scss"></style>

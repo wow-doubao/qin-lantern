@@ -1,0 +1,6 @@
+@use 'mixins/mixins' as *;
+@use 'mixins/config' as *;
+
+@include b(dialog) {
+
+}

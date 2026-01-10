@@ -1,0 +1,30 @@
+@use 'mixins/mixins' as *;
+
+@include b(paging) {
+  display: flex;
+  flex-direction: column;
+
+  @include when(reverse) {
+    flex-direction: column-reverse;
+  }
+
+  @include e(loading) {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @include e(loading-content) {
+    display: flex;
+    align-items: center;
+  }
+
+  @include e(loading-icon) {
+    margin-right: 10px;
+  }
+
+  @include e(more) {
+    cursor: pointer;
+  }
+}

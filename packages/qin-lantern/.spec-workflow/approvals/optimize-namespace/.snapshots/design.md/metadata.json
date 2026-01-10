@@ -1,0 +1,14 @@
+{
+  "filePath": ".spec-workflow/specs/optimize-namespace/design.md",
+  "currentVersion": 1,
+  "snapshots": [
+    {
+      "version": 1,
+      "filename": "snapshot-001.json",
+      "timestamp": "2026-01-10T15:34:35.740Z",
+      "trigger": "initial",
+      "approvalId": "approval_1768059275733_0h6uaym8r",
+      "approvalTitle": "设计文档：命名空间优化与样式分离 (Design: Optimize Namespace & Style Separation)"
+    }
+  ]
+}

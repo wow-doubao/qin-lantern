@@ -3,6 +3,7 @@ import { Minus, Plus } from '@element-plus/icons-vue'
 import { ElButton } from 'element-plus'
 import { cloneDeep } from 'lodash-unified'
 import { QlSpace } from 'qin-lantern'
+import { useNamespace } from 'qin-lantern/hooks'
 
 defineOptions({
   name: 'QlPlusMinus',
@@ -24,6 +25,8 @@ const emit = defineEmits<{
   plus: []
   minus: [value: any[]]
 }>()
+
+const ns = useNamespace('plus-minus')
 
 // 双向数据绑定数据修改
 const arr = defineModel(
@@ -55,14 +58,14 @@ function plusShow(i: number) {
       v-for="(item, i) in arr"
       :key="i"
     >
-      <div style="display: flex;">
-        <div style="flex: 1;margin-right: 8px;">
+      <div :class="ns.b()">
+        <div :class="ns.e('content')">
           <slot
             :data="item"
             :index="i"
           />
         </div>
-        <div style="width: 76px;">
+        <div :class="ns.e('actions')">
           <ElButton
             v-if="plusShow(i)"
             :icon="Plus"

@@ -4,7 +4,7 @@ import { Plus, UploadFilled } from '@element-plus/icons-vue'
 import { ElMessage, ElUpload } from 'element-plus'
 import { merge } from 'lodash-unified'
 import { QlDialog } from 'qin-lantern'
-import { useLocale, useUpload } from 'qin-lantern/hooks'
+import { useLocale, useNamespace, useUpload } from 'qin-lantern/hooks'
 
 const props = defineProps({
   action: {
@@ -19,6 +19,7 @@ const props = defineProps({
 const emit = defineEmits(['success'])
 
 const { t } = useLocale()
+const ns = useNamespace('wizard-upload')
 const uploadConfig = useUpload()
 
 const fileList = ref<UploadUserFile[]>([])
@@ -119,13 +120,13 @@ function handleDialogClosed() {
       :on-success="handleSuccess"
       :on-preview="handlePictureCardPreview"
     >
-      <el-icon class="el-icon--upload">
+      <el-icon :class="`${ns.elNamespace.value}-icon--upload`">
         <Plus v-if="type === 'image'" />
         <UploadFilled v-else />
       </el-icon>
       <div
         v-if="type !== 'image'"
-        class="el-upload__text"
+        :class="`${ns.elNamespace.value}-upload__text`"
       >
         {{ t('ql.wizardUpload.drag') }}
       </div>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useNamespace } from 'qin-lantern/hooks'
 import sortable from 'sortablejs'
 
 defineOptions({
@@ -17,6 +18,8 @@ const list = defineModel({
   type: Array,
   default: () => [],
 })
+
+const ns = useNamespace('draggable')
 
 onMounted(() => {
   initDraggable()
@@ -44,7 +47,10 @@ function initDraggable() {
 </script>
 
 <template>
-  <div ref="draggable">
+  <div
+    ref="draggable"
+    :class="ns.b()"
+  >
     <slot />
   </div>
 </template>

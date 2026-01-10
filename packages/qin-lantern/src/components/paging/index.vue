@@ -2,7 +2,7 @@
 <script setup lang="ts">
 import { Loading } from '@element-plus/icons-vue'
 import { ElEmpty, ElIcon, ElScrollbar } from 'element-plus'
-import { useLocale } from 'qin-lantern/hooks'
+import { useLocale, useNamespace } from 'qin-lantern/hooks'
 
 defineOptions({
   name: 'QlPaging',
@@ -41,6 +41,7 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useLocale()
+const ns = useNamespace('paging')
 
 const scrollbarRef = ref<typeof ElScrollbar>()
 const loadingRef = ref<HTMLDivElement>()
@@ -201,9 +202,8 @@ defineExpose({
     @scroll="scroll"
   >
     <div
-      class="flex flex-col"
+      :class="[ns.b(), ns.is('reverse', useChatRecordMode)]"
       :style="chatMobile && 'transform: scaleY(-1)'"
-      :class="useChatRecordMode && 'flex-col-reverse'"
     >
       <slot />
 
@@ -217,12 +217,12 @@ defineExpose({
           name="loading"
         >
           <div
-            class="py-10px flex items-center justify-center"
+            :class="ns.e('loading')"
           >
             <div
-              class="flex items-center"
+              :class="ns.e('loading-content')"
             >
-              <ElIcon class="is-loading mr-10px">
+              <ElIcon class="is-loading" :class="ns.e('loading-icon')">
                 <Loading />
               </ElIcon>
               <span>{{ t('ql.paging.loading') }}~</span>
@@ -231,7 +231,7 @@ defineExpose({
         </slot>
         <div
           v-else
-          class="py-10px flex items-center justify-center cursor-pointer"
+          :class="[ns.e('more'), ns.e('loading')]"
           @click="bottomOut"
         >
           {{ t('ql.paging.clickMore') }}
@@ -241,6 +241,4 @@ defineExpose({
   </ElScrollbar>
 </template>
 
-<style scoped lang='scss'>
-
-</style>
+<style lang="scss" scoped></style>

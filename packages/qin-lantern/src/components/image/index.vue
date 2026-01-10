@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ElImage } from 'element-plus'
+import { useNamespace } from 'qin-lantern/hooks'
 
 defineOptions({
   name: 'QlImage',
@@ -19,11 +20,14 @@ const props = defineProps({
     default: '',
   },
 })
+
+const ns = useNamespace('image')
 </script>
 
 <template>
   <ElImage
     v-if="src"
+    :class="ns.b()"
     :style="{ width: `${props.width}px`, height: `${props.height}px` }"
     :src="src"
     :preview-src-list="[src]"

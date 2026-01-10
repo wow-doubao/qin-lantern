@@ -2,7 +2,7 @@
 import type { QlUploadConfig } from 'qin-lantern/hooks'
 import type { QlLanguage } from 'qin-lantern/locale'
 import { ElConfigProvider } from 'element-plus'
-import { localeContextKey, uploadContextKey } from 'qin-lantern/hooks'
+import { localeContextKey, provideGlobalConfig, uploadContextKey } from 'qin-lantern/hooks'
 
 defineOptions({
   name: 'QlConfigProvider',
@@ -19,14 +19,23 @@ const props = defineProps({
     required: false,
     default: null,
   },
+  namespace: {
+    type: String,
+    default: 'ql',
+  },
+  elNamespace: {
+    type: String,
+    default: 'el',
+  },
 })
 
 provide(localeContextKey, computed(() => props.qlLocale as QlLanguage))
 provide(uploadContextKey, computed(() => props.qlUpload as QlUploadConfig))
+provideGlobalConfig(computed(() => ({ namespace: props.namespace, elNamespace: props.elNamespace })))
 </script>
 
 <template>
-  <ElConfigProvider>
+  <ElConfigProvider :namespace="elNamespace">
     <slot />
   </ElConfigProvider>
 </template>

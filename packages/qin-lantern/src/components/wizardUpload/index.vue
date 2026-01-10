@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Minus, Plus, Upload, View } from '@element-plus/icons-vue'
 import { useDialog } from 'qin-lantern'
-import { useLocale } from 'qin-lantern/hooks'
+import { useLocale, useNamespace } from 'qin-lantern/hooks'
 import { watchEffect } from 'vue'
 import UploadDialog from './components/uploadDialog.vue'
 import ViewDialog from './components/viewDialog.vue'
@@ -34,6 +34,7 @@ const { action, headers, type, size, max } = defineProps({
   },
 })
 const { t } = useLocale()
+const ns = useNamespace('wizard-upload')
 
 provide('type', type)
 provide('size', size)
@@ -98,12 +99,13 @@ function plusShow(i: number) {
 </script>
 
 <template>
-  <div class="flex flex-col gap-6px">
+  <div :class="ns.b()">
     <div
       v-for="(item, i) in modelValue"
       :key="i"
+      :class="ns.e('item')"
     >
-      <div class="flex flex-col gap-6px">
+      <div :class="ns.e('content')">
         <el-button-group>
           <el-button
             type="primary"

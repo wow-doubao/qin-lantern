@@ -17,6 +17,7 @@ import { QlUpload } from './components/upload'
 import { QlWizardUpload } from './components/wizardUpload'
 // $addComponent
 import 'virtual:uno.css'
+import './styles/index.scss'
 
 export * from './components/button'
 export * from './components/card'

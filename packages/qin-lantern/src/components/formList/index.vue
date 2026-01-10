@@ -5,7 +5,7 @@ import { useToggle } from '@vueuse/core'
 import { ElAutocomplete, ElCascader, ElCheckbox, ElCheckboxGroup, ElCol, ElDatePicker, ElForm, ElFormItem, ElIcon, ElInput, ElInputNumber, ElOption, ElRadio, ElRadioGroup, ElRow, ElSelect, ElSpace, ElSwitch } from 'element-plus'
 import { isArray, isString } from 'lodash-unified'
 import { QlUpload } from 'qin-lantern'
-import { useLocale } from 'qin-lantern/hooks'
+import { useLocale, useNamespace } from 'qin-lantern/hooks'
 
 type ElRadioProps = InstanceType<typeof ElRadio>['$props']
 type ElCheckboxProps = InstanceType<typeof ElCheckbox>['$props']
@@ -25,6 +25,7 @@ defineSlots<{
 }>()
 
 const { t } = useLocale()
+const ns = useNamespace('form-list')
 
 // 隐藏显示配置项
 const [active, toggle] = useToggle()
@@ -84,7 +85,7 @@ function responsive(data: Col | void | number) {
 }
 
 // 双向数据绑定数据修改
-const formData = defineModel({ type: Object, default: () => ({}) })
+const formData = defineModel<Record<string, any>>({ default: () => ({}) })
 
 // 隐藏显示配置项
 const tags = ref<Record<string, any>>({})
@@ -126,7 +127,7 @@ defineExpose({
 <template>
   <ElForm
     ref="form"
-    class="ql-formList"
+    :class="ns.b()"
     :model="formData"
   >
     <ElRow :gutter="20">
@@ -138,8 +139,7 @@ defineExpose({
         <template v-if="item.type === 'show'">
           <ElCol
             :span="24"
-            class="show"
-            :class="!active ? 'active' : ''"
+            :class="[ns.e('show'), !active ? 'active' : '']"
             @click="toggle()"
           >
             <ElSpace
@@ -149,8 +149,7 @@ defineExpose({
               {{ item?.label || t('ql.formList.more') }}
               <ElIcon>
                 <ArrowDown
-                  class="icon"
-                  :class="active ? 'is-active' : ''"
+                  :class="[ns.e('icon'), active ? 'is-active' : '']"
                 />
               </ElIcon>
             </ElSpace>
@@ -163,7 +162,7 @@ defineExpose({
             v-if="item.type === 'txt' && !item.hidden"
             :span="24"
           >
-            <div class="info-item-title">
+            <div :class="ns.e('info-item-title')">
               {{ item?.label }}
             </div>
           </ElCol>
@@ -303,63 +302,4 @@ defineExpose({
   </ElForm>
 </template>
 
-<style scoped lang='scss'>
-@use 'element-plus/theme-chalk/src/mixins/config.scss' as *;
-
-.ql-formList {
-  .info-item-title {
-    color: var(--el-color-primary);
-    font-size: 18px;
-    position: relative;
-    padding-left: 10px;
-    height: 50px;
-    line-height: 50px;
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 18px;
-      left: 1px;
-      height: 15px;
-      width: 4px;
-      border-radius: 1px;
-      background-color: var(--el-color-primary);
-    }
-  }
-
-  :deep(.#{$namespace}-form-item__content > div) {
-    width: 100% !important;
-  }
-
-  // :deep(.el-input__wrapper) {
-  //   width: 100%;
-  //   box-sizing: border-box;
-  // }
-
-  :deep(.#{$namespace}-col) {
-    transition: all 0.28s;
-  }
-
-  // 组件展示
-  .show {
-    overflow: hidden;
-    cursor: pointer;
-    color: var(--el-color-primary);
-  }
-
-  .active~.#{$namespace}-col {
-    overflow: hidden;
-    height: 0;
-    opacity: 0;
-  }
-
-  // 图标动画
-  .icon {
-    transition: transform 0.28s;
-  }
-
-  .is-active {
-    transform: rotate(-180deg);
-  }
-}
-</style>
+<style scoped lang='scss'></style>

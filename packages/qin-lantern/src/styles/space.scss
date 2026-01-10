@@ -1,0 +1,9 @@
+@use 'mixins/mixins' as *;
+@use 'mixins/config' as *;
+
+@include b(space) {
+  display: flex;
+  :deep(.#{$namespace}-space__item) {
+    width: 100%;
+  }
+}

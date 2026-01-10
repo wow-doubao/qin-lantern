@@ -1,0 +1,14 @@
+{
+  "filePath": ".spec-workflow/steering/tech.md",
+  "currentVersion": 1,
+  "snapshots": [
+    {
+      "version": 1,
+      "filename": "snapshot-001.json",
+      "timestamp": "2026-01-10T15:10:16.918Z",
+      "trigger": "initial",
+      "approvalId": "approval_1768057816913_kpwp61h0d",
+      "approvalTitle": "技术栈与架构文档 (Tech Steering Document)"
+    }
+  ]
+}

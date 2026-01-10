@@ -1,0 +1,85 @@
+# 任务文档：命名空间优化与样式分离
+
+## 1. 核心基础设施实现
+- [x] 实现 useNamespace Hook (Task ID: 1.1)
+  - 创建 `src/hooks/use-namespace/index.ts`
+  - 实现 BEM 类名生成逻辑 (b, e, m, be, em, bm, bem, is)
+  - 集成全局配置 inject 机制获取 namespace
+- [x] 搭建 SCSS 基础架构 (Task ID: 1.2)
+  - 创建 `src/styles/mixins/config.scss` (定义 namespace 变量)
+  - 创建 `src/styles/mixins/mixins.scss` (BEM mixins)
+  - 创建 `src/styles/mixins/function.scss` (辅助函数)
+  - 创建 `src/styles/var.scss` (CSS 变量定义)
+  - 创建 `src/styles/index.scss` (总入口)
+- [x] 增强 QinLanternResolver (Task ID: 1.3)
+  - 修改 `src/resolver/index.ts`
+  - 增加 `importStyle: 'sass' | 'css' | boolean` 选项支持
+  - 增加 `namespace` 选项支持
+  - 调整 sideEffects 逻辑
+- [x] 调整构建配置 (Task ID: 1.4)
+  - 修改 `vite.config.ts`
+  - 配置 `vite-plugin-dts`
+  - 确保 SCSS 文件被复制到 dist 目录
+  - 配置 package.json exports
+
+## 2. 组件样式迁移
+- [x] FormList 组件迁移 (Task ID: 2.1)
+  - 修改 `src/components/formList/index.vue`
+  - 创建 `src/styles/form-list.scss`
+- [x] Card 组件迁移 (Task ID: 2.2)
+  - 修改 `src/components/card/index.vue`
+  - 创建 `src/styles/card.scss`
+- [x] Pagination 组件迁移 (Task ID: 2.3)
+  - 修改 `src/components/pagination/index.vue`
+  - 创建 `src/styles/pagination.scss`
+- [x] Space 组件迁移 (Task ID: 2.4)
+  - 修改 `src/components/space/index.vue`
+  - 创建 `src/styles/space.scss`
+- [x] Upload 组件迁移 (Task ID: 2.5)
+  - 修改 `src/components/upload/index.vue`
+  - 创建 `src/styles/upload.scss`
+- [x] Table 组件迁移 (Task ID: 2.6)
+  - 修改 `src/components/table/index.vue`
+  - 创建 `src/styles/table.scss`
+- [x] Dialog 组件迁移 (Task ID: 2.7)
+  - 修改 `src/components/dialog/index.vue`
+  - 创建 `src/styles/dialog.scss`
+- [x] Paging 组件迁移 (Task ID: 2.8)
+  - 修改 `src/components/paging/index.vue`
+  - 创建 `src/styles/paging.scss`
+- [x] WizardUpload 组件迁移 (Task ID: 2.9)
+  - 修改 `src/components/wizardUpload/index.vue`
+  - 创建 `src/styles/wizard-upload.scss`
+- [x] PlusMinus 组件迁移 (Task ID: 2.10)
+  - 修改 `src/components/plusMinus/index.vue`
+  - 创建 `src/styles/plus-minus.scss`
+- [x] Draggable 组件迁移 (Task ID: 2.11)
+  - 修改 `src/components/draggable/index.vue`
+  - 创建 `src/styles/draggable.scss`
+
+## 3. 问题修复与优化
+- [x] 修复 Sass 编译错误 (Task ID: 3.1)
+  - 修复 `Undefined variable` 错误
+  - 更新 `src/styles/mixins/mixins.scss` 转发配置
+- [x] 修复 Sass Undefined mixin 错误 (Task ID: 3.3)
+  - 在 `src/styles/mixins/mixins.scss` 中添加 `when` mixin
+  - 修复 `src/styles/form-list.scss` 中的嵌套问题
+- [x] 修复 Sass 弃用警告 (Task ID: 3.4)
+  - 修复 `src/styles/mixins/mixins.scss` 中的 `str-slice` 弃用警告
+  - 替换为 `string.slice` 并引入 `sass:string`
+- [x] 支持 Element Plus 命名空间配置 (Task ID: 3.2)
+  - 更新 `src/hooks/use-global-config/index.ts`
+  - 更新 `src/hooks/use-namespace/index.ts`
+  - 迁移 WizardUpload 子组件样式
+- [x] Button 组件迁移 (Task ID: 2.12)
+  - 修改 `src/components/button/index.vue`
+  - 创建 `src/styles/button.scss`
+- [x] Drawer 组件迁移 (Task ID: 2.13)
+  - 修改 `src/components/drawer/index.vue`
+  - 创建 `src/styles/drawer.scss`
+- [x] ConfigProvider 组件迁移 (Task ID: 2.14)
+  - 修改 `src/components/configProvider/index.vue`
+  - 支持 `namespace` 和 `elNamespace` 配置
+- [x] Image 组件迁移 (Task ID: 2.15)
+  - 修改 `src/components/image/index.vue`
+  - 创建 `src/styles/image.scss`

@@ -1,6 +1,6 @@
-$namespace: 'ql' !default;
+$ql-namespace: 'ql' !default;
 $el-namespace: 'el' !default;
-$common-separator: '-' !default;
-$element-separator: '__' !default;
-$modifier-separator: '--' !default;
-$state-prefix: 'is-' !default;
+$ql-common-separator: '-' !default;
+$ql-element-separator: '__' !default;
+$ql-modifier-separator: '--' !default;
+$ql-state-prefix: 'is-' !default;

@@ -1,5 +1,11 @@
-@use 'mixins/config' as *;
+// @use 'sass:meta';
+// @use 'mixins/config';
 
-:root {
-  --#{$namespace}-color-primary: #409eff;
-}
+// $ns: config.$ql-namespace;
+// @if meta.variable-exists('ql-namespace') {
+//   $ns: $ql-namespace;
+// }
+
+// :root {
+//   --#{$ns}-color-primary: #409eff;
+// }

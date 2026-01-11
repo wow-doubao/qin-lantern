@@ -19,13 +19,14 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     logo: '/logo.svg',
     nav: [
-      { text: '指南', link: '/guide/index', activeMatch: '/guide' },
+      { text: '指南', link: '/guide/安装', activeMatch: '/guide' },
       { text: '组件', link: '/template/Card 卡片', activeMatch: '/template' },
       { text: 'Hook', link: '/function/index', activeMatch: '/function' },
       { text: 'Utils', link: '/utils/Format 格式化', activeMatch: '/utils' },
     ],
 
     sidebar: {
+      guide: autoSetSidebar('guide'),
       template: autoSetSidebar('template'),
       function: autoSetSidebar('function'),
       utils: autoSetSidebar('utils'),

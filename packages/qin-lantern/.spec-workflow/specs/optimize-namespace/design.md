@@ -70,10 +70,10 @@ src/
 **SCSS 示例**:
 ```scss
 // src/styles/mixins/mixins.scss
-$namespace: 'ql' !default;
+$ql-namespace: 'ql' !default;
 
 @mixin b($block) {
-  $B: $namespace + '-' + $block !global;
+  $B: $ql-namespace + '-' + $block !global;
   .#{$B} {
     @content;
   }

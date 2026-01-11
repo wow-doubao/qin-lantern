@@ -10,7 +10,7 @@ export interface ConfigProviderContext {
 
 export function useGlobalConfig<K extends keyof ConfigProviderContext>(
   key: K,
-  defaultValue?: ConfigProviderContext[K]
+  defaultValue?: ConfigProviderContext[K],
 ): Ref<ConfigProviderContext[K]>
 export function useGlobalConfig(): Ref<ConfigProviderContext>
 export function useGlobalConfig(

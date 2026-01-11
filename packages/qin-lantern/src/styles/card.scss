@@ -3,16 +3,16 @@
 
 @include b(card) {
   @include e(space) {
-    display: flex;
+    display: flex !important;
     
     // 子项样式
-    .#{$namespace}-card-space__item {
+    .#{$ql-namespace}-card-space__item {
       width: 100%;
     }
 
     // 搜索区样式
     @include e(search) {
-      .#{$namespace}-form-list {
+      .#{$ql-namespace}-form-list {
         .#{$el-namespace}-form-item {
           margin: 10px 0;
         }

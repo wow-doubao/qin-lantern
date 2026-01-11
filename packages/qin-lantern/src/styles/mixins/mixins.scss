@@ -1,12 +1,23 @@
 @use 'sass:string';
+@use 'sass:meta';
 @forward 'config';
-@use 'config' as *;
+@use 'config';
 
 // Define $B globally to avoid deprecation warning
 $B: null;
 
 @mixin b($block) {
-  $B: $namespace + '-' + $block !global;
+  $ns: config.$ql-namespace;
+  @if meta.variable-exists('ql-namespace') {
+    $ns: $ql-namespace;
+  }
+
+  $separator: config.$ql-common-separator;
+  @if meta.variable-exists('ql-common-separator') {
+    $separator: $ql-common-separator;
+  }
+  
+  $B: $ns + $separator + $block !global;
 
   .#{$B} {
     @content;
@@ -17,8 +28,13 @@ $B: null;
   $selector: &;
   $currentSelector: "";
   
+  $separator: config.$ql-element-separator;
+  @if meta.variable-exists('ql-element-separator') {
+    $separator: $ql-element-separator;
+  }
+
   @each $unit in $element {
-    $currentSelector: #{$currentSelector + "." + $B + "__" + $unit + ","};
+    $currentSelector: #{$currentSelector + "." + $B + $separator + $unit + ","};
   }
   
   @if $currentSelector != "" {
@@ -36,8 +52,13 @@ $B: null;
   $selector: &;
   $currentSelector: "";
   
+  $separator: config.$ql-modifier-separator;
+  @if meta.variable-exists('ql-modifier-separator') {
+    $separator: $ql-modifier-separator;
+  }
+
   @each $unit in $modifier {
-    $currentSelector: #{$currentSelector + $selector + "--" + $unit + ","};
+    $currentSelector: #{$currentSelector + $selector + $separator + $unit + ","};
   }
   
   @if $currentSelector != "" {
@@ -52,7 +73,12 @@ $B: null;
 }
 
 @mixin is($state) {
-  &.#{$state-prefix + $state} {
+  $prefix: config.$ql-state-prefix;
+  @if meta.variable-exists('ql-state-prefix') {
+    $prefix: $ql-state-prefix;
+  }
+
+  &.#{$prefix + $state} {
     @content;
   }
 }

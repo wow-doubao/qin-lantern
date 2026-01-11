@@ -6,12 +6,6 @@ export interface QinLanternResolverOptions {
    * @default 'css'
    */
   importStyle?: boolean | 'css' | 'sass'
-
-  /**
-   * custom namespace
-   * @default 'ql'
-   */
-  namespace?: string
 }
 
 function getSideEffects(_name: string, options: QinLanternResolverOptions): string | string[] | undefined {

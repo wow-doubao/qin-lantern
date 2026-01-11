@@ -17,10 +17,18 @@ declare module 'vue' {
     ElInput: typeof import('element-plus/es')['ElInput']
     ElTag: typeof import('element-plus/es')['ElTag']
     QlCard: typeof import('qin-lantern')['QlCard']
+    QlConfigProvider: typeof import('qin-lantern')['QlConfigProvider']
     QlDialog: typeof import('qin-lantern')['QlDialog']
     QlDraggable: typeof import('qin-lantern')['QlDraggable']
     QlDrawer: typeof import('qin-lantern')['QlDrawer']
     QlFormList: typeof import('qin-lantern')['QlFormList']
+    QlImage: typeof import('qin-lantern')['QlImage']
+    QlPagination: typeof import('qin-lantern')['QlPagination']
+    QlPlusMinus: typeof import('qin-lantern')['QlPlusMinus']
+    QlSpace: typeof import('qin-lantern')['QlSpace']
+    QlTable: typeof import('qin-lantern')['QlTable']
+    QlUpload: typeof import('qin-lantern')['QlUpload']
+    QlWizardUpload: typeof import('qin-lantern')['QlWizardUpload']
   }
   export interface GlobalDirectives {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']

@@ -30,6 +30,20 @@ interface SidebarItem {
 function getList(params: string[], path1: string, pathname: string): SidebarItem[] {
   // 存放结果
   const res: SidebarItem[] = []
+
+  // 排序：文件夹在前，文件在后，按自然顺序排序
+  params.sort((a, b) => {
+    const isDirA = isDirectory(path.join(path1, a))
+    const isDirB = isDirectory(path.join(path1, b))
+
+    if (isDirA && !isDirB)
+      return -1
+    if (!isDirA && isDirB)
+      return 1
+
+    return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })
+  })
+
   // 开始遍历params
   for (const file of params) {
     // 拼接目录

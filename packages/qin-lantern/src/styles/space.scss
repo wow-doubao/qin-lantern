@@ -3,7 +3,7 @@
 
 @include b(space) {
   display: flex;
-  :deep(.#{$namespace}-space__item) {
+  .#{$ql-namespace}-space__item {
     width: 100%;
   }
 }

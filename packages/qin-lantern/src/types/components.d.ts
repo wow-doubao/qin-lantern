@@ -23,7 +23,6 @@ declare module 'vue' {
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElImageViewer: typeof import('element-plus/es')['ElImageViewer']
     ElInput: typeof import('element-plus/es')['ElInput']
-    ElSwitch: typeof import('element-plus/es')['ElSwitch']
     FormList: typeof import('./../components/formList/index.vue')['default']
     Image: typeof import('./../components/image/index.vue')['default']
     Pagination: typeof import('./../components/pagination/index.vue')['default']
@@ -36,8 +35,5 @@ declare module 'vue' {
     UploadDialog: typeof import('./../components/wizardUpload/components/uploadDialog.vue')['default']
     ViewDialog: typeof import('./../components/wizardUpload/components/viewDialog.vue')['default']
     WizardUpload: typeof import('./../components/wizardUpload/index.vue')['default']
-  }
-  export interface GlobalDirectives {
-    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }

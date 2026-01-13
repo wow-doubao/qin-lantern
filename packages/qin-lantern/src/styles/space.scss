@@ -2,7 +2,8 @@
 @use 'mixins/config' as *;
 
 @include b(space) {
-  display: flex;
+  display: flex !important;
+
   .#{$ql-namespace}-space__item {
     width: 100%;
   }

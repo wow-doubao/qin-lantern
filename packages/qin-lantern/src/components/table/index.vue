@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T extends Record<string, any>">
-import type { TableLabel } from './types.ts'
+import type { TableLabel, TableLabelChild } from './types.ts'
 import { Operation } from '@element-plus/icons-vue'
 import { ElButton, ElPopover, ElTable, ElTableColumn, ElTree, ClickOutside as vClickOutside } from 'element-plus'
 import { useGreaterOrEqual, useNamespace } from 'qin-lantern/hooks'
@@ -33,11 +33,11 @@ provide('tableSlots', slots)
 
 const greaterOrEqual = useGreaterOrEqual()
 
-const label = ref(props.label)
+const label = ref<TableLabel[]>(props.label)
 
 // 默认选中的树
-const defaultChecked = collectVisibleIds(label.value)
-function collectVisibleIds(items: TableLabel[]) {
+const defaultChecked: string[] = collectVisibleIds(label.value)
+function collectVisibleIds(items: TableLabelChild[]): string[] {
   let labels: string[] = []
 
   items.forEach((item) => {
@@ -71,15 +71,13 @@ function onClickOutside() {
 const tableLabel = computed(() => filterVisibleItems(label.value))
 
 // 过滤树桩结构
-function filterVisibleItems(items: TableLabel[]) {
+function filterVisibleItems(items: TableLabelChild[]): TableLabel[] {
   const result: TableLabel[] = []
 
   items.forEach((item) => {
-    // 检查当前对象的 show 字段
     if (item.show !== false) {
-      const newItem = { ...item }
+      const newItem = { ...item } as TableLabel
 
-      // 如果有 child 字段且是数组，递归处理
       if (Array.isArray(item.child)) {
         newItem.child = filterVisibleItems(item.child)
       }

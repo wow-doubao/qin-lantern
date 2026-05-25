@@ -2,6 +2,23 @@
 
 [alova](https://alova.js.org/zh-CN/tutorial/getting-started/introduce)完美兼容你最喜欢的HTTP client和UI框架，快速开发客户端和服务的应用的业务逻辑，同时让API信息与代码进行交互，像虫洞一样拉近后端协作距离，极致高效地集成你的APIs
 
+## useExpose()
+
+自动代理模板 ref 上的全部属性到组件 expose，利用 Proxy 懒求值。
+
+```vue
+<script setup lang="ts">
+import { useExpose } from 'qin-lantern'
+
+const formRef = ref<typeof ElForm>()
+// 自动暴露 ElForm 的全部方法（validate、resetFields 等）
+useExpose(formRef, { isHide })
+</script>
+```
+
+- `targetRef` — 模板 ref，如 `ref<typeof ElForm>()`
+- `extra` — 额外暴露的自定义方法，同名时覆盖 ref 上的属性
+
 ## useDialog()
 
 对弹框类组件调用封装Hook

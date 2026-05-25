@@ -4,7 +4,7 @@ import { ArrowDown } from '@element-plus/icons-vue'
 import { useToggle } from '@vueuse/core'
 import { ElAutocomplete, ElCascader, ElCheckbox, ElCheckboxGroup, ElCol, ElDatePicker, ElForm, ElFormItem, ElIcon, ElInput, ElInputNumber, ElOption, ElRadio, ElRadioGroup, ElRow, ElSelect, ElSpace, ElSwitch } from 'element-plus'
 import { isArray, isString } from 'lodash-unified'
-import { QlUpload } from 'qin-lantern'
+import { QlUpload, useExpose } from 'qin-lantern'
 import { useLocale, useNamespace } from 'qin-lantern/hooks'
 
 type ElRadioProps = InstanceType<typeof ElRadio>['$props']
@@ -108,20 +108,7 @@ function isHide(data: string | string[], flag: boolean) {
 // 暴露校验，重置方法
 const form = ref<typeof ElForm>()
 
-const validate = (...arg: any[]) => form.value?.validate(...arg)
-const validateField = (...arg: any[]) => form.value?.validateField(...arg)
-const resetFields = (...arg: any[]) => form.value?.resetFields(...arg)
-const scrollToField = (...arg: any[]) => form.value?.scrollToField(...arg)
-const clearValidate = (...arg: any[]) => form.value?.clearValidate(...arg)
-
-defineExpose({
-  validate,
-  validateField,
-  resetFields,
-  scrollToField,
-  clearValidate,
-  isHide,
-})
+useExpose(form, { isHide })
 </script>
 
 <template>

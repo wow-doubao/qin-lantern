@@ -2,7 +2,7 @@
 import type { UploadFile, UploadFiles, UploadRawFile, UploadUserFile } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
 import { ElIcon, ElImage, ElMessage, ElUpload } from 'element-plus'
-import { QlDialog } from 'qin-lantern'
+import { QlDialog, useExpose } from 'qin-lantern'
 import { useLocale, useNamespace, useUpload } from 'qin-lantern/hooks'
 
 defineOptions({
@@ -124,19 +124,7 @@ function dataMmit(fileList: UploadUserFile[]) {
 }
 
 // 暴漏事件
-const abort = (...arg: any[]) => picture.value?.abort(...arg)
-const submit = (...arg: any[]) => picture.value?.submit(...arg)
-const clearFiles = (...arg: any[]) => picture.value?.clearFiles(...arg)
-const handleStart = (...arg: any[]) => picture.value?.handleStart(...arg)
-const handleRemove = (...arg: any[]) => picture.value?.handleRemove(...arg)
-
-defineExpose({
-  abort,
-  submit,
-  clearFiles,
-  handleStart,
-  handleRemove,
-})
+useExpose(picture)
 </script>
 
 <template>

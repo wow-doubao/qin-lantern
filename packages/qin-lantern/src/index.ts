@@ -38,6 +38,7 @@ export * from './components/wizardUpload'
 
 // 导入钩子函数
 export * from './composables/useDialog'
+export * from './composables/useExpose'
 export * from './composables/useRequest'
 export * from './composables/useTable'
 

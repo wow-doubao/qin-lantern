@@ -1,5 +1,5 @@
 {
-  "packageManager": "pnpm@10.14.0",
+  "packageManager": "pnpm@11.3.0",
   "workspaces": [
     "packages/*",
     "docs"
@@ -13,8 +13,8 @@
     "lint:fix": "eslint --fix"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^5.2.1",
-    "eslint": "^9.33.0",
-    "typescript": "^5.9.2"
+    "@antfu/eslint-config": "^9.0.0",
+    "eslint": "^10.4.0",
+    "typescript": "^6.0.3"
   }
 }

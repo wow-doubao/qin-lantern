@@ -5,40 +5,15 @@ import { delayed } from './utils'
 
 const timedelay = delayed()
 
-const tableData = [
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-    slot: '1',
-    slot1: 'slot1',
-    id: '1',
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-    slot: '2',
-    slot1: 'slot2',
-    id: '2',
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-    slot: '3',
-    slot1: 'slot3',
-    id: '3',
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-    slot: '4',
-    slot1: 'slot4',
-    id: '4',
-  },
-]
+// 模拟接口数据，共23条，每页10条可分3页，用于演示跨页勾选
+const tableData = Array.from({ length: 23 }, (_, i) => ({
+  date: '2016-05-03',
+  name: `Tom${i + 1}`,
+  address: `No. ${i + 1}, Grove St, Los Angeles`,
+  slot: `${i + 1}`,
+  slot1: `slot1-${i + 1}`,
+  id: `${i + 1}`,
+}))
 
 const tableLabel = reactive([
   {
@@ -90,7 +65,12 @@ const tableLabel = reactive([
   },
 ])
 
+const tableRef = ref()
 const selectData = ref([])
+// 演示官方 Exposes：ref 直接调用 toggleRowSelection 取消勾选前三行（跨页也可）
+function cancelFirstThree() {
+  tableData.slice(0, 3).forEach(row => tableRef.value?.toggleRowSelection(row, false))
+}
 
 // 列表数据
 const loading = ref(false)
@@ -107,13 +87,23 @@ const page = ref(1)
 // 每页条数
 const limit = ref(10)
 
-onMounted(async () => {
+// 模拟调用接口，按当前页码切片返回
+async function getList() {
   loading.value = true
-  list.value = await timedelay(tableData).finally(() => {
+  list.value = await timedelay(
+    tableData.slice((page.value - 1) * limit.value, page.value * limit.value),
+  ).finally(() => {
     loading.value = false
-  }) as any[] // 模拟调用接口
-  total.value = Math.ceil(Math.random() * 100) // 返回总条数
+  }) as any[]
+}
+
+onMounted(() => {
+  total.value = tableData.length // 返回总条数
+  getList()
 })
+
+// 翻页时重新加载数据
+watch([page, limit], getList)
 
 function handleUpdate(data: any) {
   console.log(data)
@@ -126,8 +116,9 @@ function handleSelectionChange(data: any) {
 
 <template>
   <ql-card>
-    <!-- selectData双向数据绑定选中的值, 数据中必须有id  ref获取元素deleteSelect事件传入当前row 删除 -->
+    <!-- selectData双向数据绑定选中的值, 数据中必须有id  ref可直接使用ElTable官方方法, 如toggleRowSelection取消勾选 -->
     <ql-table
+      ref="tableRef"
       v-model:select-data="selectData"
       v-loading="loading"
       :label="tableLabel"
@@ -160,6 +151,11 @@ function handleSelectionChange(data: any) {
         </el-button>
       </template>
     </ql-table>
+
+    <!-- 先勾选包含前三行的数据，再点击按钮可看到 selectData 中被取消 -->
+    <el-button style="margin-top: 12px" @click="cancelFirstThree">
+      取消勾选前三行
+    </el-button>
 
     <ql-pagination
       v-model:current-page="page"

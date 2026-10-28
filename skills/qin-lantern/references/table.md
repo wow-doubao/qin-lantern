@@ -32,7 +32,7 @@ defineProps<{
 
 - `label`: 支持 `ElTableColumn` 的所有属性（如 `width`、`align`、`fixed` 等），通过 `v-bind` 透传
 - `data`: 泛型约束 `T extends Record<string, any>`
-- `select`: 为 true 时显示 selection 列，通过 `v-model:selectData` 双向绑定选中数据
+- `select`: 为 true 时显示 selection 列，通过 `v-model:selectData` 双向绑定选中数据。基于 ElTable 的 `reserve-selection` 实现跨页勾选，默认以数据中的 `id` 字段作为 `row-key`，可通过 `$attrs` 传入 `row-key` 覆盖
 - `popover`: 为 true 时显示操作按钮，点击弹出树形控件让用户自定义显示/隐藏列
 
 ## v-model / Events
@@ -66,9 +66,15 @@ QlTable 支持动态插槽。在 `label` 配置中设置 `slot: true` 的列，�
 
 ## Expose 方法
 
+ElTable 实例方法已通过 `useExpose` 全部透传，[官方 Exposes](https://element-plus.org/zh-CN/component/table.html#table-exposes) 直接通过 ref 调用：
+
 ```ts
-// 从外部删除选中项
-deleteSelect(row: any): void
+const tableRef = ref()
+
+// 取消勾选某行（reserve-selection 下跨页也可）
+tableRef.value.toggleRowSelection(row, false)
+// 清空所有选中
+tableRef.value.clearSelection()
 ```
 
 ## 完整示例
@@ -128,5 +134,5 @@ function handleEdit(row: any) {
 
 - **动态表头**：通过 `popover` + `ElTree` 让用户自定义列的显示/隐藏，状态保存在 `label` 配置的 `show` 字段
 - **插槽系统**：不再需要手动为每列写 `<ElTableColumn>`，通过 `slot: true` + 具名插槽统一管理
-- **多选**：`v-model:selectData` 替代手动管理 `selection-change` 事件，支持跨页保持选中状态
+- **多选**：`v-model:selectData` 替代手动管理 `selection-change` 事件，跨页选中由 `reserve-selection` 保持（数据需包含 `id` 字段）
 - **移动端**：移动端自动取消 `fixed` 列固定，避免布局问题

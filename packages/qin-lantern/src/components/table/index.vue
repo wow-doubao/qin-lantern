@@ -3,8 +3,9 @@ import type { TableLabel, TableLabelChild } from './types.ts'
 import { Operation } from '@element-plus/icons-vue'
 import { ElButton, ElPopover, ElTable, ElTableColumn, ElTree, ClickOutside as vClickOutside } from 'element-plus'
 import { useGreaterOrEqual, useNamespace } from 'qin-lantern/hooks'
+import { useExpose } from 'qin-lantern'
 
-import { computed, nextTick, provide, ref, unref, useSlots, watch } from 'vue'
+import { computed, provide, ref, unref, useSlots } from 'vue'
 
 import QlTableColumn from './tableColumn.vue'
 
@@ -89,76 +90,30 @@ function filterVisibleItems(items: TableLabelChild[]): TableLabel[] {
   return result
 }
 
-// select筛选
+const multipleTableRef = ref<typeof ElTable>()
+
+// select筛选  借助 ElTable 的 reserve-selection 实现跨页勾选
 // 选中的所有数据
 const selectionData = defineModel<Record<string, any>[]>('selectData', {
   type: Array,
   default: () => [],
 })
-// 单选 如果存在则删除  不存在添加
-function handleSelect(_selection: any[], row: any) {
-  const index = selectionData.value.findIndex(item => item.id === row.id)
-  if (index === -1) {
-    selectionData.value.push(row)
-  }
-  else {
-    selectionData.value.splice(index, 1)
-  }
-}
-// 全选,取消全选当前页数据
-function handleSelectAll(selection: any[]) {
-  if (selection.length) {
-    const ids = selectionData.value.map(item => item.id)
-    selectionData.value.push(...selection.filter(item => !ids.includes(item.id)))
-  }
-  else {
-    const ids = props.data.map(item => item.id)
-    for (let i = selectionData.value.length - 1; i >= 0; i--) {
-      const item = selectionData.value[i]
-      if (ids.includes(item?.id)) {
-        selectionData.value.splice(i, 1)
-      }
-    }
-  }
+// 勾选状态变化时同步到 v-model
+function handleSelectionChange(selection: Record<string, any>[]) {
+  selectionData.value = selection
 }
 
-// 数据改变查询选中状态
-const multipleTableRef = ref<typeof ElTable>()
-watch(() => props.data, async () => {
-  await nextTick()
-  const ids = selectionData.value.map(item => item.id)
-  props.data.forEach((item) => {
-    if (ids.includes(item.id)) {
-      multipleTableRef.value?.toggleRowSelection(item)
-    }
-  })
-})
-
-// 向外暴露事件  能够从外部删除数据
-function deleteSelect(row: any) {
-  const index = selectionData.value.findIndex(item => item.id === row.id)
-  if (index === -1)
-    return
-  selectionData.value.splice(index, 1)
-  props.data.forEach((item) => {
-    if (item.id === row.id) {
-      multipleTableRef.value?.toggleRowSelection(item, false)
-    }
-  })
-}
-
-defineExpose({
-  deleteSelect,
-})
+// 透传 ElTable 全部官方 Exposes（clearSelection、toggleRowSelection 等），可直接通过 ref 调用
+useExpose(multipleTableRef)
 </script>
 
 <template>
   <div :class="ns.b()">
     <ElTable
-      v-bind="$attrs" ref="multipleTableRef" style="width: 100%" :data="props.data" @select="handleSelect"
-      @select-all="handleSelectAll"
+      row-key="id" v-bind="$attrs" ref="multipleTableRef" style="width: 100%" :data="props.data"
+      @selection-change="handleSelectionChange"
     >
-      <ElTableColumn v-if="props.select" type="selection" align="center" width="55" />
+      <ElTableColumn v-if="props.select" type="selection" reserve-selection align="center" width="55" />
       <!-- 选择器 -->
       <ElTableColumn
         v-if="props.popover" type="index" width="60" align="center"

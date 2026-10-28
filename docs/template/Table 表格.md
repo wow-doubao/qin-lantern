@@ -17,13 +17,13 @@ import Table from '@/examples/table.vue'
 | 属性名 | 说明 | 类型 | 默认 |
 | --- | --- | --- | --- |
 | label | 对标头项控制 | [TableColumn](https://element-plus.org/zh-CN/component/table.html#table-column-%E5%B1%9E%E6%80%A7)`&{slot?: boolean, show?: boolean}` |- |
-| select | 是否展示select | boolean | false |
+| select | 是否展示select（基于 `reserve-selection` 实现跨页勾选，数据需包含 `id` 字段作为 `row-key`，可通过 `$attrs` 传入 `row-key` 覆盖） | boolean | false |
 | popover | 是否展示动态表头 | boolean | false |
 | v-model:selectData | select数据 | array | [] |
 
 ### Exposes
 | 名称 | 说明 | 类型 |
 | --- | --- | --- |
-| deleteSelect | 删除select选项 | `(row: any) => void` |
+| — | ElTable 实例方法已通过 `useExpose` 全部透传，[官方 Exposes](https://element-plus.org/zh-CN/component/table.html#table-exposes)（`clearSelection`、`toggleRowSelection` 等）可直接通过 ref 调用，如 `tableRef.value.toggleRowSelection(row, false)` | - |
 
 [Attributes](https://element-plus.org/zh-CN/component/space.html#attributes)

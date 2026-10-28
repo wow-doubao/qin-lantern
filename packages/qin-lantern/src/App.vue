@@ -132,7 +132,7 @@ function change(row: any) {
 
 <template>
   <ql-card>
-    <!-- selectData双向数据绑定选中的值, 数据中必须有id  ref获取元素deleteSelect事件传入当前row 删除 -->
+    <!-- selectData双向数据绑定选中的值, 数据中必须有id  ref可直接使用ElTable官方方法, 如toggleRowSelection取消勾选 -->
     <ql-table
       v-model:select-data="selectData"
       v-loading="loading"

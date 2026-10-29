@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { UploadFile, UploadFiles, UploadRawFile, UploadUserFile } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
-import { ElIcon, ElImage, ElMessage, ElUpload } from 'element-plus'
-import { QlDialog, useExpose } from 'qin-lantern'
+import { ElIcon, ElImage, ElImageViewer, ElMessage, ElUpload } from 'element-plus'
+import { useExpose } from 'qin-lantern'
 import { useLocale, useNamespace, useUpload } from 'qin-lantern/hooks'
 
 defineOptions({
@@ -39,22 +39,9 @@ const fileList = ref<UploadUserFile[]>([])
 
 // 判断隐藏上传按钮
 const picture = ref<typeof ElUpload>()
-const stopStyle = watch(() => [...fileList.value], async () => {
-  if (props.disabled)
-    return
-  await nextTick()
-  if (!picture.value)
-    return
-  const uploadElement = (picture.value as any).$el.firstChild.lastChild
-  if (props.limit && fileList.value.length > props.limit - 1) {
-    uploadElement.style.display = 'none'
-  }
-  else {
-    uploadElement.style.display = 'inline-flex'
-  }
-})
 
-const stopProp = watch(() => props.modelValue, () => {
+// modelValue 同步到 fileList（setup 内的 watch 随组件卸载自动停止）
+watch(() => props.modelValue, () => {
   if (!props.modelValue) {
     fileList.value = []
   }
@@ -70,10 +57,6 @@ const stopProp = watch(() => props.modelValue, () => {
   }
 }, { immediate: true })
 
-onUnmounted(() => {
-  stopStyle()
-  stopProp()
-})
 // 上传前校验
 function beforeUpload(file: UploadRawFile) {
   const fileSize = Number(file.size / 1024 / 1024)
@@ -143,6 +126,7 @@ useExpose(picture)
         ref="picture"
         v-model:file-list="fileList"
         v-bind="{ ...uploadConfig, ...$attrs }"
+        :class="{ [ns.is('limit')]: props.limit && fileList.length >= props.limit }"
         list-type="picture-card"
         :limit="props.limit"
         :on-success="handleSuccess"
@@ -153,15 +137,21 @@ useExpose(picture)
       >
         <ElIcon><Plus /></ElIcon>
       </ElUpload>
-      <QlDialog v-model="dialogVisible">
-        <img
-          style="width: 100%;"
-          :src="dialogImageUrl"
-          alt=""
-        >
-      </QlDialog>
+      <!-- 官方图片预览组件 -->
+      <ElImageViewer
+        v-if="dialogVisible"
+        :url-list="[dialogImageUrl]"
+        @close="dialogVisible = false"
+      />
     </template>
   </div>
 </template>
 
-<style scoped lang='scss'></style>
+<style scoped lang='scss'>
+// 达到limit时隐藏上传触发框
+.is-limit {
+  :deep(.el-upload--picture-card) {
+    display: none;
+  }
+}
+</style>

@@ -2,7 +2,7 @@
   "name": "@qin-lantern/utils",
   "type": "module",
   "version": "1.0.1",
-  "packageManager": "pnpm@10.13.1",
+  "packageManager": "pnpm@12.16.1",
   "description": "",
   "author": "",
   "license": "ISC",
@@ -21,18 +21,18 @@
     "lint:fix": "eslint --fix"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^5.2.1",
-    "@eslint/js": "^9.33.0",
-    "@rollup/plugin-commonjs": "^28.0.6",
+    "@antfu/eslint-config": "^10.0.0",
+    "@eslint/js": "^10.0.1",
+    "@rollup/plugin-commonjs": "^29.0.3",
     "@rollup/plugin-json": "^6.1.0",
-    "@rollup/plugin-node-resolve": "^16.0.1",
-    "@rollup/plugin-terser": "^0.4.4",
-    "@rollup/plugin-typescript": "^12.1.4",
-    "@types/node": "^24.3.0",
-    "globals": "^16.3.0",
-    "jiti": "^2.5.1",
-    "rollup": "^4.46.2",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^1.0.2",
+    "@rollup/plugin-typescript": "^12.3.1",
+    "@types/node": "^26.6.6",
+    "globals": "^17.13.0",
+    "jiti": "^2.7.0",
+    "rollup": "^4.66.0",
     "tslib": "^2.8.1",
-    "typescript-eslint": "^8.39.1"
+    "typescript-eslint": "^8.72.1"
   }
 }

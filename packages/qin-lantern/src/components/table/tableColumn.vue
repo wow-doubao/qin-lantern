@@ -28,7 +28,7 @@ const greaterOrEqual = useGreaterOrEqual()
       <QlTableColumn
         v-for="item in props.tableLabel.child"
         :key="item.label"
-        :table-label="item"
+        :table-label="item as TableLabel"
       />
     </template>
 

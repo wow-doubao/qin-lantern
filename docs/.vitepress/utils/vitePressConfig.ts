@@ -15,8 +15,13 @@ const resolve = {
 
 export const vitePressConfig = {
   resolve,
+  build: {
+    // 文档站整包引入 element-plus，chunk 偏大属正常，放宽告警阈值
+    chunkSizeWarningLimit: 1600,
+  },
   plugins: [
-    UnoCSS(),
+    // 复用组件库的 uno 配置（presets/icons），避免 "Config file not found" 告警
+    UnoCSS({ configFile: path.resolve(__dirname, '..', '..', '..', './packages/qin-lantern/uno.config.ts') }),
     eslint(),
     AutoImport({
       resolvers: [ElementPlusResolver()],

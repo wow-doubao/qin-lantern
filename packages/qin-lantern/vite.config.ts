@@ -13,8 +13,8 @@ function copyStyles() {
   return {
     name: 'copy-styles',
     closeBundle: async () => {
-      const srcDir = path.resolve(__dirname, './src/styles')
-      const destDir = path.resolve(__dirname, './dist/styles')
+      const srcDir = path.resolve(import.meta.dirname, './src/styles')
+      const destDir = path.resolve(import.meta.dirname, './dist/styles')
       try {
         await fs.cp(srcDir, destDir, { recursive: true })
         console.log('Styles copied to dist/styles')
@@ -30,7 +30,7 @@ function copyStyles() {
 export default defineConfig({
   resolve: {
     alias: {
-      'qin-lantern': path.resolve(__dirname, './src'),
+      'qin-lantern': path.resolve(import.meta.dirname, './src'),
     },
   },
   plugins: [
@@ -38,11 +38,11 @@ export default defineConfig({
     UnoCSS(),
 
     AutoImport({
-      dts: path.resolve(__dirname, './src/types/auto-imports.d.ts'),
+      dts: path.resolve(import.meta.dirname, './src/types/auto-imports.d.ts'),
       resolvers: [ElementPlusResolver()],
       eslintrc: {
         enabled: true, // Default `false`
-        filepath: path.resolve(__dirname, './src/types/.eslintrc-auto-import.json'), // Default `./.eslintrc-auto-import.json`
+        filepath: path.resolve(import.meta.dirname, './src/types/.eslintrc-auto-import.json'), // Default `./.eslintrc-auto-import.json`
         globalsPropValue: true, // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
       },
       imports: [
@@ -75,12 +75,12 @@ export default defineConfig({
     lib: {
       // Could also be a dictionary or array of multiple entry points
       entry: {
-        'qin-lantern': path.resolve(__dirname, './src/index.ts'),
-        'locale/index': path.resolve(__dirname, './src/locale/index.ts'),
-        'resolver/index': path.resolve(__dirname, './src/resolver/index.ts'),
-        // 'utils/index': path.resolve(__dirname, '../utils/index.ts'),
+        'qin-lantern': path.resolve(import.meta.dirname, './src/index.ts'),
+        'locale/index': path.resolve(import.meta.dirname, './src/locale/index.ts'),
+        'resolver/index': path.resolve(import.meta.dirname, './src/resolver/index.ts'),
+        // 'utils/index': path.resolve(import.meta.dirname, '../utils/index.ts'),
       },
-      // entry: path.resolve(__dirname, './src/index.ts'),
+      // entry: path.resolve(import.meta.dirname, './src/index.ts'),
       name: 'qin-lantern',
     },
     rollupOptions: {
